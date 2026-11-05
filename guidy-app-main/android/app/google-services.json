@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "1006208450463",
+    "project_id": "guidy-19e46",
+    "storage_bucket": "guidy-19e46.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006208450463:android:7693174b80b2543b5b87aa",
+        "android_client_info": {
+          "package_name": "com.guidy.guidy_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006208450463-edldsii2ptaibg1g1ikrve36om9lll5m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.guidy.guidy_app",
+            "certificate_hash": "10353f98c4901babc759a03ad2181cca42dc1505"
+          }
+        },
+        {
+          "client_id": "1006208450463-vq7f51rj5pogcqjnkd6oh0m0ke30bbsg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.guidy.guidy_app",
+            "certificate_hash": "df7df090b16bd8926cdb9a83aebfc4bc468e5e76"
+          }
+        },
+        {
+          "client_id": "1006208450463-02906ue5a7vlqg3vc3kmju01dotg87vv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAteoz_9NPIhe_Ec2bCb341rr8xSViozC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006208450463-02906ue5a7vlqg3vc3kmju01dotg87vv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1006208450463-g64acq43s3po5ol5mu658c8ttp88ik83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.guidy.guidyApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

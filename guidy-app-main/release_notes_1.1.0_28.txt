@@ -1,0 +1,20 @@
+<en-US>
+Guidy 1.1 (28): clearer fares, simpler trips.
+- Nothing hides behind your phone's navigation buttons.
+- Fares stand out next to the trip time.
+- Simple Mode marks Fastest, Cheapest, Recommended.
+- New "Previous step" button during a trip.
+- Bigger "Where to?" button; clearer wording.
+- Commute alerts now arrive even when Guidy is closed.
+- Patch notes in Settings.
+</en-US>
+<ar>
+جايدي 1.1 (28): أجرة أوضح ومشاوير أبسط.
+- مفيش حاجة بتستخبى ورا زراير الموبايل.
+- الأجرة باينة جنب وقت المشوار.
+- الوضع البسيط بيعلّم الأسرع والأرخص والمُوصى بيه.
+- زرار «الخطوة اللي فاتت» وإنت ماشي.
+- زرار «رايح فين؟» أكبر وصياغة أوضح.
+- تنبيهات المشوار بتوصل حتى لو جايدي مقفول.
+- ملاحظات التحديثات في الإعدادات.
+</ar>

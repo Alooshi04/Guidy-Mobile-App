@@ -1,0 +1,122 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-release-apk:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: subosito/flutter-action@v2
+        with:
+          # Pinned: an unpinned "stable" moved to 3.47 on its own and the
+          # app stopped compiling (material.dart dropped a Cupertino
+          # re-export). Bump this deliberately, after analyze + test pass.
+          flutter-version: 3.47.5
+          channel: stable
+          cache: true
+
+      - name: Verify release secrets are configured
+        run: |
+          missing=""
+          [ -z "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" ] && missing="$missing RELEASE_KEYSTORE_BASE64"
+          [ -z "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" ] && missing="$missing RELEASE_KEYSTORE_PASSWORD"
+          [ -z "${{ secrets.RELEASE_KEY_PASSWORD }}" ] && missing="$missing RELEASE_KEY_PASSWORD"
+          [ -z "${{ secrets.RELEASE_KEY_ALIAS }}" ] && missing="$missing RELEASE_KEY_ALIAS"
+          [ -z "${{ secrets.API_BASE_URL }}" ] && missing="$missing API_BASE_URL"
+          [ -z "${{ secrets.MAPS_API_KEY_ANDROID }}" ] && missing="$missing MAPS_API_KEY_ANDROID"
+          [ -z "${{ secrets.RELEASE_CERT_SHA1 }}" ] && missing="$missing RELEASE_CERT_SHA1"
+          [ -z "${{ secrets.ADMOB_APP_ID_ANDROID }}" ] && missing="$missing ADMOB_APP_ID_ANDROID"
+          [ -z "${{ secrets.ADMOB_BANNER_AD_UNIT_ID_ANDROID }}" ] && missing="$missing ADMOB_BANNER_AD_UNIT_ID_ANDROID"
+          [ -z "${{ secrets.ADMOB_APP_OPEN_AD_UNIT_ID_ANDROID }}" ] && missing="$missing ADMOB_APP_OPEN_AD_UNIT_ID_ANDROID"
+          if [ -n "$missing" ]; then
+            echo "::error::Missing required repo secrets:$missing"
+            echo "This workflow refuses to build a 'release' APK that would be either"
+            echo "debug-signed (Play Store rejects it), pointed at no backend at all, or"
+            echo "silently shipped with a placeholder Maps key / test AdMob ads -- a"
+            echo "release build with no secrets.properties on the runner used to fall"
+            echo "back to secrets.properties.example's placeholder values with no warning"
+            echo "anyone would see before it hit Play Store."
+            echo "Add the missing secrets under Settings > Secrets and variables > Actions,"
+            echo "then re-run. See android/key.properties.example for what the keystore"
+            echo "secrets should contain. RELEASE_CERT_SHA1 is the release keystore's own"
+            echo "signing certificate fingerprint (colons stripped) -- get it via:"
+            echo "  keytool -list -v -keystore android/app/guidy-release-key.jks -alias <keyAlias> -storepass <storePassword>"
+            echo "and add that same package+SHA-1 pair as an ADDITIONAL entry (not a"
+            echo "replacement for the debug one) if MAPS_API_KEY_ANDROID has Cloud"
+            echo "Console's 'Android apps' restriction enabled."
+            exit 1
+          fi
+
+      - name: Restore release keystore
+        working-directory: android/app
+        run: echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > guidy-release-key.jks
+
+      - name: Write key.properties
+        working-directory: android
+        run: |
+          cat > key.properties << EOF
+          storePassword=${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.RELEASE_KEY_PASSWORD }}
+          keyAlias=${{ secrets.RELEASE_KEY_ALIAS }}
+          storeFile=guidy-release-key.jks
+          EOF
+
+      - name: Write secrets.properties (Maps key, AdMob IDs, release cert SHA-1)
+        # android/app/build.gradle.kts reads this file directly for the
+        # native Maps/AdMob manifest placeholders, and it's also passed to
+        # `flutter build` below via --dart-define-from-file so the Dart-side
+        # getters (AdService, PlacesService) pick up the same real values
+        # instead of silently falling back to their test/debug defaults.
+        # ANDROID_CERT_SHA1 here is the RELEASE keystore's fingerprint (not
+        # the debug one from local dev) -- it only matters once
+        # MAPS_API_KEY_ANDROID gets Cloud Console's "Android apps"
+        # restriction, but is set correctly here in advance either way.
+        run: |
+          cat > secrets.properties << EOF
+          MAPS_API_KEY_ANDROID=${{ secrets.MAPS_API_KEY_ANDROID }}
+          ANDROID_CERT_SHA1=${{ secrets.RELEASE_CERT_SHA1 }}
+          ADMOB_APP_ID_ANDROID=${{ secrets.ADMOB_APP_ID_ANDROID }}
+          ADMOB_BANNER_AD_UNIT_ID_ANDROID=${{ secrets.ADMOB_BANNER_AD_UNIT_ID_ANDROID }}
+          ADMOB_APP_OPEN_AD_UNIT_ID_ANDROID=${{ secrets.ADMOB_APP_OPEN_AD_UNIT_ID_ANDROID }}
+          ADMOB_NATIVE_AD_UNIT_ID_ANDROID=${{ secrets.ADMOB_NATIVE_AD_UNIT_ID_ANDROID }}
+          ADMOB_INTERSTITIAL_AD_UNIT_ID_ANDROID=${{ secrets.ADMOB_INTERSTITIAL_AD_UNIT_ID_ANDROID }}
+          ADMOB_REWARDED_AD_UNIT_ID_ANDROID=${{ secrets.ADMOB_REWARDED_AD_UNIT_ID_ANDROID }}
+          GUIDY_REAL_ADS=true
+          EOF
+
+      - name: Make gradle.properties portable for this runner
+        working-directory: android
+        run: |
+          sed -i -e '/org\.gradle\.java\.home/d' \
+                 -e 's/-Xmx8G/-Xmx4G/' \
+                 -e 's/MaxMetaspaceSize=4G/MaxMetaspaceSize=1G/' gradle.properties
+          echo "--- gradle.properties as CI will use it ---"
+          cat gradle.properties
+
+      - run: flutter pub get
+      - run: flutter gen-l10n
+
+      - name: Build Release APK
+        run: flutter build apk --release --dart-define-from-file=secrets.properties --dart-define=API_BASE_URL=${{ secrets.API_BASE_URL }}
+
+      - name: Upload Release APK artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: guidy-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v3
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+          generate_release_notes: true

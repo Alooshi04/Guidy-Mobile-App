@@ -1,0 +1,20 @@
+<en-US>
+Guidy 1.1 (25): clearer trips.
+- Every line keeps its colour everywhere: metro Line 3 is green on the card, the map and during your trip.
+- Search shows places in your city first, named in your language.
+- Bus chips say AC or double-decker.
+- Routes with a long walk say so.
+- Walking times between stops are more accurate.
+- "We don't cover this trip yet" instead of an error.
+- Delete your data from Simple Mode too.
+</en-US>
+<ar>
+جايدي 1.1 (25): مشاوير أوضح.
+- كل خط بقى ليه لون واحد في كل حتة: الخط التالت للمترو أخضر في الكارت والخريطة وإنت ماشي.
+- البحث بيوريك أماكن مدينتك الأول وبلغتك.
+- الأتوبيسات بتقول مكيف أو دبل ديكر.
+- الطرق اللي فيها مشي كتير بتقولك.
+- أوقات المشي بين المحطات بقت أدق.
+- «لسه مش بنغطي المشوار ده» بدل رسالة الخطأ.
+- تقدر تمسح بياناتك من الوضع البسيط كمان.
+</ar>

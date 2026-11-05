@@ -1,0 +1,21 @@
+gradle-wrapper.jar
+/.gradle
+/.kotlin/
+/build/
+/captures/
+/gradlew
+/gradlew.bat
+/local.properties
+GeneratedPluginRegistrant.java
+.cxx/
+
+# Remember to never publicly share your keystore.
+# key.properties and app/guidy-release-key.jks ARE force-added to the PRIVATE
+# guidy-app repo (owner's decision, 2026-09-16) so a fresh clone signs like the
+# PC. tool/make_ci_snapshot.sh strips them from the public CI mirror and CI
+# fails if they ever appear in a public repo. These lines stay so other
+# keystores are not picked up by accident.
+# See https://flutter.dev/to/reference-keystore
+key.properties
+**/*.keystore
+**/*.jks

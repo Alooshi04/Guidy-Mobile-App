@@ -1,0 +1,18 @@
+<en-US>
+Guidy 1.1: clearer routes, commute alerts and smarter Alexandria trips.
+- Route Options redesigned: compact cards, and a detail page with every line and every stop.
+- Commute alerts tell you when your usual trip is easiest and when the last ride leaves.
+- Microbuses tell you what to ask the driver.
+- The familiar trip screen is back, and every vehicle you can take is always shown.
+- Alexandria picks microbuses first, since buses wait until full.
+- Bigger search bar, exact fares and Arabic fixes.
+</en-US>
+<ar>
+جايدي 1.1: مسارات أوضح، وتنبيهات للمشوار اليومي، ورحلات أذكى في إسكندرية.
+- شكل جديد لاختيار المسار: كروت مختصرة وصفحة تفاصيل فيها كل الخطوط وكل المحطات.
+- تنبيهات المشوار بتقولك إمتى أسهل وقت لمشوارك وإمتى آخر عربية.
+- الميكروباص بيقولك تسأل السواق على إيه.
+- شاشة الرحلة القديمة رجعت، وكل العربيات اللي تنفعك ظاهرة دايماً.
+- إسكندرية بترشح الميكروباص الأول، لأن الأتوبيس بيستنى لما يتملي.
+- شريط بحث أكبر، وأجرة مظبوطة، وتصليحات في العربي.
+</ar>

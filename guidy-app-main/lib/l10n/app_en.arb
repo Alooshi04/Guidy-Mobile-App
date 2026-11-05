@@ -1,0 +1,1805 @@
+{
+  "@@locale": "en",
+  "appTagline": "Navigate Egypt with intelligence",
+  "@appTagline": {},
+  "goodMorning": "Good Morning",
+  "@goodMorning": {},
+  "goodMorningUser": "Good morning, {name}",
+  "@goodMorningUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "goodAfternoon": "Good Afternoon",
+  "@goodAfternoon": {},
+  "goodAfternoonUser": "Good afternoon, {name}",
+  "@goodAfternoonUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "goodEvening": "Good Evening",
+  "@goodEvening": {},
+  "goodEveningUser": "Good evening, {name}",
+  "@goodEveningUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "goodNight": "Good Night",
+  "@goodNight": {},
+  "goodNightUser": "Good night, {name}",
+  "@goodNightUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "whereTo": "Where to?",
+  "@whereTo": {},
+  "quickAccessHome": "Home",
+  "@quickAccessHome": {},
+  "quickAccessWork": "Work",
+  "@quickAccessWork": {},
+  "quickAccessSaved": "Saved",
+  "@quickAccessSaved": {},
+  "routingTo": "Routing to {name}...",
+  "@routingTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "gpsRequiredToRoute": "Ensure GPS is enabled to route.",
+  "@gpsRequiredToRoute": {},
+  "resettingLocation": "Resetting {key} location...",
+  "@resettingLocation": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      }
+    }
+  },
+  "setLocationTitle": "Set {key}",
+  "@setLocationTitle": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      }
+    }
+  },
+  "locationSavedAs": "{key} saved as {name}",
+  "@locationSavedAs": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "searchOrTapMap": "Search or tap map...",
+  "@searchOrTapMap": {},
+  "saveAsKey": "Save as {key}",
+  "@saveAsKey": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      }
+    }
+  },
+  "pickupLocation": "Pickup Location",
+  "@pickupLocation": {},
+  "gpsFetchFailed": "Failed to get GPS location.",
+  "@gpsFetchFailed": {},
+  "findRoutes": "Find Routes",
+  "@findRoutes": {},
+  "routeOptionsTitle": "Route Options",
+  "@routeOptionsTitle": {},
+  "routeCalculationFailed": "Could not calculate route.",
+  "@routeCalculationFailed": {},
+  "availableRoutes": "Available Routes",
+  "routeListTab": "Route list",
+  "@routeListTab": {"description": "Route Options view switch: the list of route cards."},
+  "quickCompareTab": "Quick compare",
+  "@quickCompareTab": {"description": "Route Options view switch: a table comparing every route side by side."},
+  "@availableRoutes": {},
+  "statDuration": "Duration",
+  "@statDuration": {},
+  "statFare": "Fare",
+  "@statFare": {},
+  "statDistance": "Distance",
+  "@statDistance": {},
+  "routeTimeBreakdown": "{riding} travelling, about {wait} waiting",
+  "@routeTimeBreakdown": {
+    "placeholders": {
+      "riding": {
+        "type": "String"
+      },
+      "wait": {
+        "type": "String"
+      }
+    }
+  },
+  "stepWaitHint": "Wait about {wait}",
+  "@stepWaitHint": {
+    "placeholders": {
+      "wait": {
+        "type": "String"
+      }
+    }
+  },
+  "durationMinutes": "{minutes}",
+  "@durationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceKm": "{km} km",
+  "@distanceKm": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "fareEgp": "{amount} EGP",
+  "@fareEgp": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "alsoWorksLabel": "Also works: {routes}",
+  "@alsoWorksLabel": {
+    "placeholders": {
+      "routes": {
+        "type": "String"
+      }
+    }
+  },
+  "routeEveryMinutes": "{route} (about every {minutes})",
+  "@routeEveryMinutes": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "listSeparator": ", ",
+  "@listSeparator": {},
+  "navNowLabel": "Now",
+  "@navNowLabel": {},
+  "navAlsoServing": "Also serving this leg",
+  "@navAlsoServing": {},
+  "navYourRoute": "Your route",
+  "@navYourRoute": {},
+  "navMinutesAway": "about {minutes} away",
+  "@navMinutesAway": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "navArrivingNow": "Arriving now",
+  "@navArrivingNow": {},
+  "navEveryMinutes": "about every {minutes}",
+  "@navEveryMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "navWalkToStop": "{meters} m walk to {stop}",
+  "@navWalkToStop": {
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      },
+      "stop": {
+        "type": "String"
+      }
+    }
+  },
+  "navWalkToStopFirst": "Walk {meters} m to {stop} first",
+  "@navWalkToStopFirst": {
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      },
+      "stop": {
+        "type": "String"
+      }
+    }
+  },
+  "navGetOffThenWalk": "Get off at {stop}, then walk {meters} m",
+  "@navGetOffThenWalk": {
+    "placeholders": {
+      "stop": {
+        "type": "String"
+      },
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "legalAgreePrefix": "I agree to the ",
+  "legalTermsLink": "Terms and Conditions",
+  "legalAgreeSep1": ", the ",
+  "legalPrivacyLink": "Privacy Policy",
+  "legalAgreeSep2": " and the ",
+  "legalDeletionLink": "Data Deletion Policy",
+  "legalAgreeEnd": ".",
+  "legalConsentTitle": "Before you continue",
+  "legalConsentBody": "Please read Guidy's terms and policies and agree to them to use the app. Tap a name to read it.",
+  "legalConsentContinue": "Agree and continue",
+  "navNoLiveData": "No live data yet",
+  "@navNoLiveData": {},
+  "navLocationOff": "Location is off, so the map won't follow you.",
+  "@navLocationOff": {},
+  "navLocationBlocked": "Location is blocked for Guidy. Turn it on in Settings to follow the route live.",
+  "@navLocationBlocked": {},
+  "navLocationLost": "Lost GPS signal. Your route is still below.",
+  "@navLocationLost": {},
+  "createAccount": "Create Account",
+  "@createAccount": {},
+  "nameLabel": "Full Name",
+  "@nameLabel": {},
+  "nameHint": "Enter your name",
+  "@nameHint": {},
+  "emailLabel": "Email",
+  "@emailLabel": {},
+  "emailHint": "Enter your email",
+  "@emailHint": {},
+  "passwordLabel": "Password",
+  "@passwordLabel": {},
+  "passwordHint": "Enter your password",
+  "@passwordHint": {},
+  "passwordCreateHint": "Create a password",
+  "@passwordCreateHint": {},
+  "confirmPasswordLabel": "Confirm Password",
+  "@confirmPasswordLabel": {},
+  "confirmPasswordHint": "Confirm your password",
+  "@confirmPasswordHint": {},
+  "signIn": "Sign In",
+  "@signIn": {},
+  "signUp": "Sign Up",
+  "@signUp": {},
+  "noAccountPrompt": "Don't have an account? ",
+  "@noAccountPrompt": {},
+  "hasAccountPrompt": "Already have an account? ",
+  "@hasAccountPrompt": {},
+  "fillBothFields": "Please fill in both fields",
+  "@fillBothFields": {},
+  "fillAllFields": "Please fill in all fields",
+  "@fillAllFields": {},
+  "invalidEmail": "Please enter a valid email address",
+  "@invalidEmail": {},
+  "signInFailed": "Sign in failed",
+  "@signInFailed": {},
+  "signUpFailed": "Sign up failed",
+  "@signUpFailed": {},
+  "incorrectCredentials": "Incorrect email or password.",
+  "@incorrectCredentials": {},
+  "checkInternet": "Check your internet connection.",
+  "@checkInternet": {},
+  "passwordsDontMatch": "Passwords do not match",
+  "@passwordsDontMatch": {},
+  "emailAlreadyRegistered": "This email is already registered.",
+  "@emailAlreadyRegistered": {},
+  "languageSwitcherTitle": "Language",
+  "@languageSwitcherTitle": {},
+  "languageEnglish": "English",
+  "@languageEnglish": {},
+  "languageArabic": "العربية",
+  "@languageArabic": {},
+  "youHaveArrived": "You have arrived!",
+  "@youHaveArrived": {},
+  "arrivingAt": "Arriving at {station}...",
+  "@arrivingAt": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceKmTo": "{distance} km to {station}",
+  "@distanceKmTo": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceMTo": "{distance} m to {station}",
+  "@distanceMTo": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "myCurrentLocation": "My Current Location",
+  "@myCurrentLocation": {},
+  "settingsTitle": "Settings",
+  "@settingsTitle": {},
+  "darkModeLabel": "Dark Mode",
+  "@darkModeLabel": {},
+  "darkModeSubtitle": "Overrides your device's system setting",
+  "@darkModeSubtitle": {},
+  "accountSectionLabel": "Account",
+  "@accountSectionLabel": {},
+  "preferencesSectionLabel": "Preferences",
+  "@preferencesSectionLabel": {},
+  "logOut": "Log Out",
+  "@logOut": {},
+  "quickDestinationsLabel": "Quick Destinations",
+  "@quickDestinationsLabel": {},
+  "adPlaceholderLabel": "Advertisement",
+  "@adPlaceholderLabel": {},
+  "navHome": "Home",
+  "@navHome": {},
+  "navSettings": "Settings",
+  "@navSettings": {},
+  "contactUsLabel": "Contact Us",
+  "@contactUsLabel": {},
+  "continueWithGoogle": "Continue with Google",
+  "@continueWithGoogle": {},
+  "orDivider": "or",
+  "@orDivider": {},
+  "socialSignInFailed": "Couldn't sign in. Please try again.",
+  "@socialSignInFailed": {},
+  "savedPlacesTitle": "Saved Places",
+  "@savedPlacesTitle": {},
+  "addPlaceButton": "Add a place",
+  "@addPlaceButton": {},
+  "noSavedPlacesYet": "No saved places yet. Tap below to add one.",
+  "@noSavedPlacesYet": {},
+  "deletePlaceConfirmTitle": "Remove this place?",
+  "@deletePlaceConfirmTitle": {},
+  "deletePlaceConfirmBody": "You can always add it again later.",
+  "@deletePlaceConfirmBody": {},
+  "placeNameHint": "Name (e.g. Gym, Mosque)",
+  "@placeNameHint": {},
+  "cancelButton": "Cancel",
+  "@cancelButton": {},
+  "removeButton": "Remove",
+  "@removeButton": {},
+  "noSearchResultsFound": "No places found. Try a different search.",
+  "@noSearchResultsFound": {},
+  "placeSearchUnavailable": "Place search isn't available in this version of the app. You can still pick a spot on the map.",
+  "@placeSearchUnavailable": {},
+  "continueAsGuest": "Continue as Guest",
+  "@continueAsGuest": {},
+  "guestLabel": "Guest",
+  "@guestLabel": {},
+  "deleteAccountButton": "Delete Account",
+  "@deleteAccountButton": {},
+  "deleteAccountConfirmTitle": "Delete your account?",
+  "@deleteAccountConfirmTitle": {},
+  "deleteAccountConfirmBody": "This permanently deletes your account and can't be undone.",
+  "@deleteAccountConfirmBody": {},
+  "deleteGuestDataButton": "Delete Guest Data",
+  "@deleteGuestDataButton": {},
+  "deleteGuestDataConfirmTitle": "Delete your guest data?",
+  "@deleteGuestDataConfirmTitle": {},
+  "deleteGuestDataConfirmBody": "This ends your guest session and deletes the data linked to it, like your agreement to our terms. Route reports you sent are kept. This can't be undone.",
+  "@deleteGuestDataConfirmBody": {},
+  "deleteButton": "Delete",
+  "@deleteButton": {},
+  "reauthRequiredTitle": "Please sign in again",
+  "@reauthRequiredTitle": {},
+  "reauthRequiredBody": "For your security, confirm it's you before we delete your account.",
+  "@reauthRequiredBody": {},
+  "confirmButton": "Confirm",
+  "@confirmButton": {},
+  "deleteAccountFailed": "Couldn't delete your account. Please try again.",
+  "@deleteAccountFailed": {},
+  "recentSearchesLabel": "Recent",
+  "@recentSearchesLabel": {},
+  "clearHistoryLabel": "Clear",
+  "@clearHistoryLabel": {},
+  "shareRouteText": "How to get from {start} to {end} by public transport, on Guidy:\n{link}",
+  "@shareRouteText": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "retryButton": "Retry",
+  "@retryButton": {},
+  "somethingWentWrongTitle": "Something went wrong",
+  "@somethingWentWrongTitle": {},
+  "rateGuidyLabel": "Rate Guidy",
+  "@rateGuidyLabel": {},
+  "privacyPolicyLabel": "Privacy Policy",
+  "@privacyPolicyLabel": {},
+  "supportSectionLabel": "Support",
+  "@supportSectionLabel": {},
+  "useCurrentLocationTooltip": "Use my current location",
+  "@useCurrentLocationTooltip": {},
+  "showPasswordTooltip": "Show password",
+  "@showPasswordTooltip": {},
+  "hidePasswordTooltip": "Hide password",
+  "@hidePasswordTooltip": {},
+  "closeMapTooltip": "Close",
+  "@closeMapTooltip": {},
+  "centerOnMyLocationTooltip": "Center on my location",
+  "@centerOnMyLocationTooltip": {},
+  "removePlaceTooltip": "Remove this place",
+  "@removePlaceTooltip": {},
+  "vehicleBus": "Bus",
+  "@vehicleBus": {},
+  "vehicleMinibus": "Minibus",
+  "@vehicleMinibus": {},
+  "vehicleMicrobus": "Microbus",
+  "@vehicleMicrobus": {},
+  "vehicleMetro": "Metro",
+  "@vehicleMetro": {},
+  "vehicleMonorail": "Monorail",
+  "@vehicleMonorail": {},
+  "vehicleLrt": "LRT",
+  "@vehicleLrt": {},
+  "vehicleTram": "Tram",
+  "@vehicleTram": {},
+  "vehicleAirportShuttle": "Airport Shuttle",
+  "@vehicleAirportShuttle": {},
+  "vehicleBrt": "BRT",
+  "@vehicleBrt": {
+    "description": "Cairo Ring Road bus rapid transit"
+  },
+  "vehicleWalk": "Walk",
+  "@vehicleWalk": {},
+  "routeTierRecommended": "Recommended",
+  "@routeTierRecommended": {},
+  "routeTierFastest": "Fastest",
+  "@routeTierFastest": {},
+  "routeTierRegular": "Regular",
+  "@routeTierRegular": {},
+  "routeTierCheapest": "Cheapest",
+  "@routeTierCheapest": {},
+  "routeTierAlternative": "Alternative",
+  "@routeTierAlternative": {},
+  "routeTierWalk": "Walk",
+  "@routeTierWalk": {},
+  "crowdLow": "Low",
+  "@crowdLow": {},
+  "crowdMedium": "Medium",
+  "@crowdMedium": {},
+  "crowdHigh": "High",
+  "@crowdHigh": {},
+  "instrWalkToStationTitle": "Walk to Station",
+  "@instrWalkToStationTitle": {},
+  "instrWalkToStationSubtitle": "Walk {distance}m to {station}",
+  "@instrWalkToStationSubtitle": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "instrWalkToTransferTitle": "Walk to Transfer",
+  "@instrWalkToTransferTitle": {},
+  "instrWalkToTransferSubtitle": "Walk to the next stop near {station}",
+  "@instrWalkToTransferSubtitle": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "instrContinueWalkTitle": "Walking",
+  "@instrContinueWalkTitle": {},
+  "instrContinueWalkSubtitle": "Continue on foot",
+  "@instrContinueWalkSubtitle": {},
+  "instrBoardTitleWithVehicle": "Board {vehicleType}",
+  "@instrBoardTitleWithVehicle": {
+    "placeholders": {
+      "vehicleType": {
+        "type": "String"
+      }
+    }
+  },
+  "instrBoardWithNumber": "{vehicleType} {routeNumber}",
+  "@instrBoardWithNumber": {
+    "placeholders": {
+      "vehicleType": {
+        "type": "String"
+      },
+      "routeNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "instrBoardGeneral": "{vehicleType} towards {routeDescription}",
+  "@instrBoardGeneral": {
+    "placeholders": {
+      "vehicleType": {
+        "type": "String"
+      },
+      "routeDescription": {
+        "type": "String"
+      }
+    }
+  },
+  "instrTransferTitle": "Transfer",
+  "@instrTransferTitle": {},
+  "instrArriveTitle": "Arrive & Disembark",
+  "@instrArriveTitle": {},
+  "instrArriveSubtitle": "Get off at {station}",
+  "@instrArriveSubtitle": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "instrWalkToDestinationTitle": "Walk to Destination",
+  "@instrWalkToDestinationTitle": {},
+  "instrWalkToDestinationSubtitle": "Walk {distance}m to your destination",
+  "@instrWalkToDestinationSubtitle": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "fareEstimateNote": "Fares are estimates and may vary",
+  "@fareEstimateNote": {},
+  "tripRecapTitle": "Trip Overview",
+  "@tripRecapTitle": {},
+  "tripStepsLabel": "Steps",
+  "@tripStepsLabel": {},
+  "fareTotalLabel": "Total Fare",
+  "@fareTotalLabel": {},
+  "startNavigationButton": "Start Navigation",
+  "@startNavigationButton": {},
+  "navLines": "Lines",
+  "@navLines": {},
+  "navMetro": "Metro",
+  "@navMetro": {},
+  "linesOfMode": "{mode} Lines",
+  "@linesOfMode": {
+    "description": "Title of the Lines list for one transport mode, e.g. \"Minibus Lines\".",
+    "placeholders": {"mode": {"type": "String"}}
+  },
+  "lineFirstTrip": "Start",
+  "@lineFirstTrip": {"description": "Line detail: label of the card with the time of the first trip of the day."},
+  "lineLastTrip": "End",
+  "@lineLastTrip": {"description": "Line detail: label of the card with the time of the last trip of the day."},
+  "lineServiceHours": "Hours",
+  "@lineServiceHours": {"description": "Line detail: label of the card with the line's operating hours."},
+  "lineOpenNow": "Open now",
+  "@lineOpenNow": {"description": "Line detail: the line is running at the moment."},
+  "lineClosedNow": "Closed now",
+  "@lineClosedNow": {"description": "Line detail: the line is not running at the moment."},
+  "lineClosedOpensAt": "Closed now, opens at {time}",
+  "@lineClosedOpensAt": {"description": "Trip recap: a line on the trip is not running now, and when it starts again.", "placeholders": {"time": {"type": "String"}}},
+  "navToolsShow": "Show trip tools",
+  "@navToolsShow": {"description": "Live navigation: menu button that opens the tool rail on the map."},
+  "navToolsHide": "Hide trip tools",
+  "@navToolsHide": {"description": "Live navigation: menu button that folds the tool rail away."},
+  "navToolsOverview": "Route overview",
+  "@navToolsOverview": {"description": "Live navigation tool rail: zoom the map out to show the whole route."},
+  "linesSearchHint": "Line number, or where it goes",
+  "@linesSearchHint": {},
+  "linesSearchPrompt": "Search a line number like 65, or a place like Maadi.",
+  "@linesSearchPrompt": {},
+  "linesNoResults": "No lines match that search.",
+  "@linesNoResults": {},
+  "linesTapHint": "Tap a line to see every stop it makes.",
+  "@linesTapHint": {},
+  "linesAlexandriaTitle": "Alexandria Lines",
+  "@linesAlexandriaTitle": {"description": "Title of the Lines screen while the Alexandria-only view is on."},
+  "linesAlexandriaOfMode": "Alexandria {mode} Lines",
+  "@linesAlexandriaOfMode": {
+    "description": "Title of the Alexandria-only Lines list for one transport mode, e.g. \"Alexandria Microbus Lines\".",
+    "placeholders": {"mode": {"type": "String"}}
+  },
+  "linesAlexandriaHint": "Only lines that run in Alexandria, including the Cairo to Alexandria microbuses.",
+  "@linesAlexandriaHint": {"description": "Subtitle of the Alexandria-only Lines view."},
+  "linesAlexandriaEmpty": "No Alexandria lines are available right now.",
+  "@linesAlexandriaEmpty": {"description": "Alexandria-only Lines view: the data has no Alexandria lines."},
+  "linesStopCount": "{count} stops",
+  "@linesStopCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "linesEveryMinutes": "About every {minutes}",
+  "@linesEveryMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "linesDirectionTowards": "Towards {terminus}",
+  "@linesDirectionTowards": {
+    "placeholders": {
+      "terminus": {
+        "type": "String"
+      }
+    }
+  },
+  "linesStopsInOrder": "Stops in order",
+  "@linesStopsInOrder": {},
+  "linesLoadFailed": "Couldn't load lines right now.",
+  "@linesLoadFailed": {},
+  "linesViewList": "Stops",
+  "@linesViewList": {},
+  "linesViewMap": "Map",
+  "@linesViewMap": {},
+  "linesFitRoute": "Fit Route",
+  "@linesFitRoute": {},
+  "metroTitle": "Metro Planner",
+  "@metroTitle": {},
+  "metroSubtitle": "Metro only. No buses, no walking legs.",
+  "@metroSubtitle": {},
+  "metroFromLabel": "From",
+  "@metroFromLabel": {},
+  "metroToLabel": "To",
+  "@metroToLabel": {},
+  "metroPickStation": "Choose a station",
+  "@metroPickStation": {},
+  "metroPlanButton": "Show metro route",
+  "@metroPlanButton": {},
+  "metroSameStationError": "Pick two different stations.",
+  "@metroSameStationError": {},
+  "metroNoPathError": "We couldn't find a metro-only route between those two.",
+  "@metroNoPathError": {},
+  "metroSearchStationHint": "Search stations",
+  "@metroSearchStationHint": {},
+  "metroChangeAt": "Change at {station}",
+  "@metroChangeAt": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "metroChangeTo": "Change to {line}",
+  "@metroChangeTo": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "metroChangesCount": "{count, plural, =1{1 change} other{{count} changes}}",
+  "@metroChangesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "metroNoChanges": "Direct, no changes",
+  "@metroNoChanges": {},
+  "metroInterchangeBadge": "Interchange",
+  "@metroInterchangeBadge": {},
+  "metroRideStops": "Ride {count} stops",
+  "@metroRideStops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "metroSwapTooltip": "Swap start and destination",
+  "@metroSwapTooltip": {},
+  "metroLinesServing": "Lines: {lines}",
+  "@metroLinesServing": {
+    "placeholders": {
+      "lines": {
+        "type": "String"
+      }
+    }
+  },
+  "metroStationsLoadFailed": "Couldn't load the station list.",
+  "@metroStationsLoadFailed": {},
+  "navRecenterTooltip": "Re-center on me",
+  "@navRecenterTooltip": {},
+  "fareFree": "Free",
+  "@fareFree": {},
+  "pinnedLocation": "Pinned location",
+  "@pinnedLocation": {},
+  "serverUnreachable": "Could not reach the Guidy server. Check your connection and try again.",
+  "@serverUnreachable": {},
+  "errorOutsideCoverage": "That place is outside the area Guidy covers.",
+  "@errorOutsideCoverage": {},
+  "errorNoRouteFound": "We couldn't find a way to get there. It may be outside our coverage.",
+  "@errorNoRouteFound": {},
+  "errorNoServiceThisHour": "Nothing is running at this hour. Most routes here run about 06:00 to 23:00. Try again during service hours.",
+  "@errorNoServiceThisHour": {},
+  "errorTitleNotCovered": "We don't cover this trip yet",
+  "errorTitleNoService": "Nothing is running right now",
+  "linesDirectionTowardsFrom": "Towards {terminus}, from {origin}",
+  "@linesDirectionTowardsFrom": {
+    "placeholders": {
+      "terminus": {
+        "type": "String"
+      },
+      "origin": {
+        "type": "String"
+      }
+    }
+  },
+  "reportEntryPoint": "Something wrong with this route?",
+  "@reportEntryPoint": {},
+  "reportCommentRequired": "Please tell us a bit more so we can act on it.",
+  "@reportCommentRequired": {},
+  "reportSubmit": "Send report",
+  "@reportSubmit": {},
+  "reportSent": "Thanks, your report was sent.",
+  "@reportSent": {},
+  "reportQueued": "Saved. We'll send it as soon as you're back online.",
+  "@reportQueued": {},
+  "reportFailed": "Couldn't send that report. Please try again.",
+  "@reportFailed": {},
+  "reportSignInRequired": "Sign in to send a report.",
+  "@reportSignInRequired": {},
+  "routeTierPartial": "Gets you close",
+  "@routeTierPartial": {},
+  "partialUncoveredNotice": "This doesn't reach your destination. The last {distance} isn't covered by any route we know yet.",
+  "@partialUncoveredNotice": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "partialLastCoveredStop": "Last stop we cover: {stop}",
+  "@partialLastCoveredStop": {
+    "placeholders": {
+      "stop": {
+        "type": "String"
+      }
+    }
+  },
+  "nearestHubsHint": "The closest places we do cover are {origin} near your start, and {destination} near your destination.",
+  "@nearestHubsHint": {
+    "placeholders": {
+      "origin": {
+        "type": "String"
+      },
+      "destination": {
+        "type": "String"
+      }
+    }
+  },
+  "reportMissingRouteButton": "Tell us what's missing",
+  "@reportMissingRouteButton": {},
+  "reportMissingRouteTitle": "Which route should be here?",
+  "@reportMissingRouteTitle": {},
+  "reportMissingRouteIntro": "Our data is incomplete for this trip. If you know a bus, minibus or microbus that makes it, tell us and we'll add it for everyone.",
+  "@reportMissingRouteIntro": {},
+  "reportMissingRouteHint": "e.g. minibus 37 from Kilo 4 & Half to Kafr Tohormos",
+  "@reportMissingRouteHint": {},
+  "betterRouteButton": "Know a better route?",
+  "@betterRouteButton": {},
+  "betterRouteSheetIntro": "Tell us about it and we'll check it and add it for everyone.",
+  "@betterRouteSheetIntro": {},
+  "betterRouteWriteTitle": "Write it to us",
+  "@betterRouteWriteTitle": {},
+  "betterRouteWriteSubtitle": "Describe it in your own words",
+  "@betterRouteWriteSubtitle": {},
+  "betterRouteWriteHint": "e.g. walk to Abbas El Akkad, minibus 66 to Ramses, then the metro",
+  "@betterRouteWriteHint": {},
+  "betterRouteBuildTitle": "Build it from the transport network",
+  "@betterRouteBuildTitle": {},
+  "betterRouteBuildSubtitle": "Pick each line and walk in order",
+  "@betterRouteBuildSubtitle": {},
+  "betterRouteBuilderTitle": "Build your route",
+  "@betterRouteBuilderTitle": {},
+  "betterRouteBuilderIntro": "Add each part of the trip in order, from your start to your destination.",
+  "@betterRouteBuilderIntro": {},
+  "betterRouteAddWalk": "Add a walk",
+  "@betterRouteAddWalk": {},
+  "betterRouteAddRide": "Add a ride",
+  "@betterRouteAddRide": {},
+  "betterRouteWalkMeters": "Metres (optional)",
+  "@betterRouteWalkMeters": {},
+  "betterRouteBoardAt": "Board at (optional)",
+  "@betterRouteBoardAt": {},
+  "betterRouteGetOffAt": "Get off at (optional)",
+  "@betterRouteGetOffAt": {},
+  "betterRouteFare": "Fare in EGP (optional)",
+  "@betterRouteFare": {},
+  "betterRouteNoteHint": "Anything else we should know? (optional)",
+  "@betterRouteNoteHint": {},
+  "betterRouteRemoveLeg": "Remove",
+  "@betterRouteRemoveLeg": {},
+  "betterRouteReorderHint": "Drag to reorder",
+  "@betterRouteReorderHint": {},
+  "betterRouteMoveUp": "Move up",
+  "@betterRouteMoveUp": {},
+  "betterRouteMoveDown": "Move down",
+  "@betterRouteMoveDown": {},
+  "betterRouteChangeLine": "Change line",
+  "@betterRouteChangeLine": {},
+  "betterRoutePickLineTitle": "Pick the line",
+  "@betterRoutePickLineTitle": {},
+  "betterRouteNotInApp": "Not in the app? Type it yourself",
+  "@betterRouteNotInApp": {},
+  "betterRouteTypedMode": "Type of ride",
+  "@betterRouteTypedMode": {},
+  "betterRouteTypedName": "Line number or name",
+  "@betterRouteTypedName": {},
+  "betterRouteTypedAdd": "Add this line",
+  "@betterRouteTypedAdd": {},
+  "betterRouteTypedBadge": "Not in the app",
+  "@betterRouteTypedBadge": {},
+  "betterRouteNeedRide": "Add at least one ride to send the route.",
+  "@betterRouteNeedRide": {},
+  "betterRouteSubmit": "Send the route",
+  "@betterRouteSubmit": {},
+  "betterRouteDiscardTitle": "Leave without sending?",
+  "@betterRouteDiscardTitle": {},
+  "betterRouteDiscardBody": "The route you built will be lost.",
+  "@betterRouteDiscardBody": {},
+  "betterRouteDiscardLeave": "Leave",
+  "@betterRouteDiscardLeave": {},
+  "betterRouteDiscardStay": "Keep building",
+  "@betterRouteDiscardStay": {},
+  "excludeMetro": "Exclude Metro",
+  "@excludeMetro": {},
+  "filterMinWalk": "Minimum Walk",
+  "@filterMinWalk": {},
+  "filterMinTransfers": "Fewest Transfers",
+  "@filterMinTransfers": {},
+  "shareTripTooltip": "Share Trip",
+  "@shareTripTooltip": {},
+  "navStopAlarmOn": "Stop alert active",
+  "@navStopAlarmOn": {},
+  "navStopAlarmOff": "Stop alert disabled",
+  "@navStopAlarmOff": {},
+  "navStopAlarmAlert": "Prepare to get off! Next stop: {station}",
+  "@navStopAlarmAlert": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "metroTicketTitle": "Metro Ticket Counter",
+  "@metroTicketTitle": {},
+  "navStopAlarmActiveToast": "Stop alert: Active (vibrates 400m before your stop)",
+  "@navStopAlarmActiveToast": {},
+  "navStopAlarmDisabledToast": "Stop alert: Disabled",
+  "@navStopAlarmDisabledToast": {},
+  "navRecenterFinding": "Finding your location...",
+  "@navRecenterFinding": {},
+  "navRecenterSuccess": "Centered on your location",
+  "@navRecenterSuccess": {},
+  "navRecenterFallback": "GPS unavailable, centered on trip start",
+  "@navRecenterFallback": {},
+  "navOverviewToast": "Full route overview",
+  "@navOverviewToast": {},
+  "directRouteNoTransfers": "Direct transit",
+  "@directRouteNoTransfers": {},
+  "transfersCountBadge": "{count, plural, =1{1 transfer} other{{count} transfers}}",
+  "@transfersCountBadge": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "walkMetersBadge": "{meters} m walk",
+  "@walkMetersBadge": {
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "quickReportTitle": "Report Commute Conditions",
+  "@quickReportTitle": {},
+  "quickReportSubtitle": "Help fellow commuters know live transit status",
+  "@quickReportSubtitle": {},
+  "reportCategoryTraffic": "Traffic standstill / Severe jam",
+  "@reportCategoryTraffic": {},
+  "reportCategoryMissing": "Bus delayed or missing",
+  "@reportCategoryMissing": {},
+  "reportCategoryCrowd": "Severe vehicle or stop crowding",
+  "@reportCategoryCrowd": {},
+  "reportCategoryFare": "Microbus driver / collector increased fare",
+  "@reportCategoryFare": {},
+  "reportCategoryDiversion": "Route diverted / Roadblock",
+  "@reportCategoryDiversion": {},
+  "reportThanksToast": "Thank you, your report helps fellow commuters!",
+  "@reportThanksToast": {},
+  "reportNotePlaceholder": "Any extra details? (Optional)",
+  "@reportNotePlaceholder": {},
+  "walkManeuverRight": "Turn right",
+  "@walkManeuverRight": {},
+  "walkManeuverLeft": "Turn left",
+  "@walkManeuverLeft": {},
+  "walkManeuverUTurn": "Make a U-turn",
+  "@walkManeuverUTurn": {},
+  "walkInDistance": "In {distance} {action}",
+  "@walkInDistance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "metroNetworkMapButton": "Network Map",
+  "@metroNetworkMapButton": {},
+  "navHistory": "Trips",
+  "@navHistory": {},
+  "historyTitle": "Trips & Savings",
+  "@historyTitle": {},
+  "totalMoneySaved": "Money Saved",
+  "@totalMoneySaved": {},
+  "totalTimeSaved": "Time Saved",
+  "@totalTimeSaved": {},
+  "emptyHistoryTitle": "No Trips Logged Yet",
+  "@emptyHistoryTitle": {},
+  "emptyHistorySubtitle": "Start navigating or plan a trip with Guidy to see your cumulative money, time, and carbon savings!",
+  "@emptyHistorySubtitle": {},
+  "planTripButton": "Plan a Trip",
+  "@planTripButton": {},
+  "clearHistoryConfirm": "Clear all trip history?",
+  "@clearHistoryConfirm": {},
+  "clearHistoryAction": "Clear History",
+  "@clearHistoryAction": {},
+  "clearHistorySuccess": "Trip history cleared",
+  "@clearHistorySuccess": {},
+  "tripDeletedToast": "Trip removed from history",
+  "@tripDeletedToast": {},
+  "savingsCalculationInfoTitle": "How Savings are Calculated",
+  "@savingsCalculationInfoTitle": {},
+  "savingsCalculationInfo": "Savings are calculated based on your personal route choice: when you choose the Fastest route, we calculate the minutes you saved compared to slower alternatives, and when you choose the Cheapest route, we calculate the money you saved compared to more expensive alternatives.",
+  "@savingsCalculationInfo": {},
+  "filterAll": "All",
+  "@filterAll": {},
+  "filterThisWeek": "This Week",
+  "@filterThisWeek": {},
+  "filterThisMonth": "This Month",
+  "@filterThisMonth": {},
+  "filterMetro": "Metro",
+  "@filterMetro": {},
+  "filterBus": "Bus",
+  "@filterBus": {},
+  "filterMicrobus": "Microbus",
+  "@filterMicrobus": {},
+  "minsSavedShort": "{mins} saved",
+  "@minsSavedShort": {
+    "placeholders": {
+      "mins": {
+        "type": "String"
+      }
+    }
+  },
+  "hoursMinsSavedShort": "{hours}h {mins}m saved",
+  "@hoursMinsSavedShort": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      },
+      "mins": {
+        "type": "String"
+      }
+    }
+  },
+  "reportLineTitle": "Report Line Issue",
+  "@reportLineTitle": {},
+  "reportMetroTitle": "Report Metro Issue",
+  "@reportMetroTitle": {},
+  "reportReasonLineDoesNotExist": "Line does not exist or discontinued",
+  "@reportReasonLineDoesNotExist": {},
+  "reportReasonLineWrongPath": "Route diversion or different streets",
+  "@reportReasonLineWrongPath": {},
+  "reportReasonLineWrongStop": "Wrong stop sequence or missing stop",
+  "@reportReasonLineWrongStop": {},
+  "reportReasonLineWrongFare": "Incorrect fare",
+  "@reportReasonLineWrongFare": {},
+  "reportReasonLineBadTiming": "Inaccurate schedule or frequency",
+  "@reportReasonLineBadTiming": {},
+  "reportReasonMetroStationClosed": "Station closed or out of service",
+  "@reportReasonMetroStationClosed": {},
+  "reportReasonMetroWrongTransfer": "Incorrect transfer instruction",
+  "@reportReasonMetroWrongTransfer": {},
+  "reportReasonMetroWrongFare": "Incorrect ticket fare",
+  "@reportReasonMetroWrongFare": {},
+  "reportReasonMetroDelay": "Significant delay or disruption",
+  "@reportReasonMetroDelay": {},
+  "reportPickStopOptional": "Select affected stop (optional)",
+  "@reportPickStopOptional": {},
+  "reportAllStopsOption": "General line issue (entire route)",
+  "@reportAllStopsOption": {},
+  "reportActionSubmit": "Submit Report",
+  "@reportActionSubmit": {},
+  "reportLineSuccessToast": "Thank you! Your report has been submitted to improve the network.",
+  "@reportLineSuccessToast": {},
+  "reportCommentHint": "Add details (e.g. actual fare, detour street, etc.)",
+  "@reportCommentHint": {},
+  "reportAnIssueWithThisLine": "Report an issue with this line",
+  "@reportAnIssueWithThisLine": {},
+  "reportAnIssueWithMetro": "Report an issue with this metro route",
+  "@reportAnIssueWithMetro": {},
+  "reportCategoryOther": "Other issue",
+  "@reportCategoryOther": {},
+  "reportReasonPrompt": "What is the problem?",
+  "@reportReasonPrompt": {},
+  "recentTripsTitle": "Recent Trips",
+  "@recentTripsTitle": {},
+  "recentTripsSubtitle": "Trips you've taken, their cost and duration",
+  "@recentTripsSubtitle": {},
+  "noRecentTripsYet": "No trips taken yet. Take a ride and it will appear here!",
+  "@noRecentTripsYet": {},
+  "moneySavedPill": "Saved {amount} EGP",
+  "@moneySavedPill": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tripDetailFarePaid": "Fare Paid",
+  "@tripDetailFarePaid": {},
+  "tripDetailOpenRecap": "View Trip Details",
+  "@tripDetailOpenRecap": {},
+  "minutesCount": "{count, plural, =1{1 min} other{{count} min}}",
+  "@minutesCount": {
+    "description": "A number of minutes, pluralised. Arabic needs its own forms: 1 دقيقة, 2 دقيقتين, 3-10 دقائق, 11+ دقيقة.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationHours": "{count, plural, other{{count} h}}",
+  "@durationHours": {
+    "description": "Whole hours of a trip over an hour: 1 h, 2 h. Arabic needs its own forms: ساعة, ساعتين, 3-10 ساعات, 11+ ساعة.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationAndMinutes": "{minutes}",
+  "@durationAndMinutes": {
+    "description": "The minutes after the hours of a long trip: 1 h 18 min. Arabic joins them with و (ساعة و18 دقيقة).",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "routeWalkMeters": "{meters} m",
+  "@routeWalkMeters": {
+    "description": "A walk on a route card, beside the walking icon.",
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "routeCardLine": "{mode} {number}",
+  "@routeCardLine": {
+    "description": "A ride's line on a route card: Minibus 66, Green Bus G1.",
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerHint": "Tap a line on the map or a route below to choose it",
+  "@plannerHint": {},
+  "plannerWalkTo": "Walk {distance} to {station}",
+  "@plannerWalkTo": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerWalkToDestination": "Walk {distance} to your destination",
+  "@plannerWalkToDestination": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "lineRecommended": "recommended",
+  "lineRecommendedLegend": "Just as good: covers the whole ride, no extra walk, a similar fare",
+  "plannerAnyOfTheseLines": "{mode}, take any of these",
+  "@plannerAnyOfTheseLines": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerMoreLines": "+{count} more",
+  "@plannerMoreLines": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plannerFewerLines": "Show fewer",
+  "plannerHailAt": "Wave one down at {station}",
+  "@plannerHailAt": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerAskToStopAt": "Ask the driver to stop at {station}",
+  "@plannerAskToStopAt": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerWalkToStreet": "Walk {distance} to the street",
+  "@plannerWalkToStreet": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "stepWalkToStreet": "Walk to the street",
+  "plannerTakeFrom": "Get on at {station}",
+  "@plannerTakeFrom": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerTowards": "towards {station}",
+  "@plannerTowards": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerGetOffAt": "Get off at {station}",
+  "@plannerGetOffAt": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerStart": "Start trip",
+  "@plannerStart": {},
+  "plannerClosedNow": "Some lines on this route aren't running right now",
+  "@plannerClosedNow": {},
+  "plannerMeters": "{meters} m",
+  "@plannerMeters": {
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "plannerSteps": "Your trip",
+  "@plannerSteps": {},
+  "navRideTo": "Stay on until {station}",
+  "@navRideTo": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "navRiding": "On {line}",
+  "@navRiding": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "navWalkThenBoard": "Then {action}",
+  "@navWalkThenBoard": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "navGetReadyOff": "Get ready to get off at {station}",
+  "@navGetReadyOff": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "navNearBoarding": "Almost at {station}",
+  "@navNearBoarding": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "navGetOffHere": "Get off here",
+  "@navGetOffHere": {},
+  "navWalkToDestinationFrom": "Walk from {station} to your destination",
+  "@navWalkToDestinationFrom": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "navYouArrived": "You have arrived",
+  "@navYouArrived": {},
+  "navSwitchRouteTitle": "Switch to this route?",
+  "@navSwitchRouteTitle": {},
+  "navSwitchRouteBody": "{minutes}, {fare}",
+  "@navSwitchRouteBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      },
+      "fare": {
+        "type": "String"
+      }
+    }
+  },
+  "navSwitchRouteConfirm": "Switch route",
+  "@navSwitchRouteConfirm": {},
+  "navCompassTooltip": "North up",
+  "@navCompassTooltip": {},
+  "simpleModeLabel": "Simple mode",
+  "@simpleModeLabel": {},
+  "simpleModeSubtitle": "Big text and buttons, fewer choices, one step at a time",
+  "@simpleModeSubtitle": {},
+  "simpleShowMoreRoutes": "Show other routes",
+  "@simpleShowMoreRoutes": {},
+  "simpleShowFewerRoutes": "Show only the best route",
+  "@simpleShowFewerRoutes": {},
+  "shareRouteTooltip": "Share this route",
+  "@shareRouteTooltip": {},
+  "shareLiveTooltip": "Share my trip live",
+  "@shareLiveTooltip": {},
+  "shareLiveText": "Follow my trip to {dest} live on Guidy:\n{link}",
+  "@shareLiveText": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "shareLiveActive": "Your trip is being shared live",
+  "@shareLiveActive": {},
+  "shareLiveStop": "Stop",
+  "@shareLiveStop": {},
+  "shareLiveFailed": "Couldn't start sharing. Check your internet connection.",
+  "@shareLiveFailed": {},
+  "liveViewerTitle": "Live trip",
+  "@liveViewerTitle": {},
+  "liveViewerHeading": "{name} is on the way to {dest}",
+  "@liveViewerHeading": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "liveViewerHeadingNoName": "On the way to {dest}",
+  "@liveViewerHeadingNoName": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "liveViewerOnVehicle": "Now on {vehicle}",
+  "@liveViewerOnVehicle": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "liveViewerWalking": "Walking",
+  "@liveViewerWalking": {},
+  "liveViewerEta": "Arrives around {time} (in {minutes})",
+  "@liveViewerEta": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "liveViewerArrived": "Arrived at {dest}",
+  "@liveViewerArrived": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "liveViewerEnded": "This trip is no longer being shared.",
+  "@liveViewerEnded": {},
+  "liveViewerUpdated": "Last update {time}",
+  "@liveViewerUpdated": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "liveViewerWaiting": "Waiting for their first location…",
+  "@liveViewerWaiting": {},
+  "liveViewerOffline": "Couldn't refresh. Retrying…",
+  "@liveViewerOffline": {},
+  "routeTierAvailableNow": "Running now",
+  "@routeTierAvailableNow": {},
+  "nightNothingRunningTitle": "Nothing's running for this trip right now",
+  "@nightNothingRunningTitle": {},
+  "nightNothingRunningBody": "None of the lines this trip needs run at this hour. Your usual route below starts running again at {time} (in {wait}).",
+  "@nightNothingRunningBody": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "wait": {
+        "type": "String"
+      }
+    }
+  },
+  "nightCanWalk": "It's close enough to walk. See the walking option.",
+  "@nightCanWalk": {},
+  "nightAvailableTitle": "Late night: your usual lines have stopped",
+  "@nightAvailableTitle": {},
+  "nightAvailableBody": "The first option uses lines that are still running. Your usual route starts running again at {time} (in {wait}).",
+  "@nightAvailableBody": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "wait": {
+        "type": "String"
+      }
+    }
+  },
+  "nightUsualRoute": "Usual route, runs again at {time}",
+  "@nightUsualRoute": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "pwRuleMinLength": "At least 8 characters",
+  "@pwRuleMinLength": {},
+  "pwRuleUpper": "An uppercase letter (A-Z)",
+  "@pwRuleUpper": {},
+  "pwRuleLower": "A lowercase letter (a-z)",
+  "@pwRuleLower": {},
+  "pwRuleDigit": "A number (0-9)",
+  "@pwRuleDigit": {},
+  "pwRuleSymbol": "A symbol, like ! @ # ?",
+  "@pwRuleSymbol": {},
+  "pwRuleNoEdgeSpaces": "No spaces at the start or end",
+  "@pwRuleNoEdgeSpaces": {},
+  "pwRuleNotCommon": "Not a commonly used password",
+  "@pwRuleNotCommon": {},
+  "pwStrengthWeak": "Weak",
+  "@pwStrengthWeak": {},
+  "pwStrengthFair": "Fair",
+  "@pwStrengthFair": {},
+  "pwStrengthGood": "Good",
+  "@pwStrengthGood": {},
+  "pwStrengthStrong": "Strong",
+  "@pwStrengthStrong": {},
+  "pwStrengthLabel": "Password strength",
+  "@pwStrengthLabel": {},
+  "passwordRulesNotMet": "Your password doesn't meet all the rules yet.",
+  "@passwordRulesNotMet": {},
+  "tooManyRequests": "Too many attempts. Please wait a moment and try again.",
+  "@tooManyRequests": {},
+  "verifyEmailTitle": "Verify your email",
+  "@verifyEmailTitle": {},
+  "verifyEmailBody": "We sent a verification link to {email}. Open it, then come back and tap \"I've verified\". Check your spam folder if you can't find it.",
+  "@verifyEmailBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyEmailResend": "Resend email",
+  "@verifyEmailResend": {},
+  "verifyEmailResendIn": "Resend in {seconds}s",
+  "@verifyEmailResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "verifyEmailSent": "Verification email sent.",
+  "@verifyEmailSent": {},
+  "verifyEmailCheck": "I've verified",
+  "@verifyEmailCheck": {},
+  "verifyEmailNotYet": "Not verified yet. Open the link in the email first.",
+  "@verifyEmailNotYet": {},
+  "verifyEmailUseOther": "Use a different account",
+  "@verifyEmailUseOther": {},
+  "forgotPasswordLink": "Forgot password?",
+  "@forgotPasswordLink": {},
+  "forgotPasswordTitle": "Reset your password",
+  "@forgotPasswordTitle": {},
+  "forgotPasswordBody": "Enter your account email and we'll send you a link to set a new password.",
+  "@forgotPasswordBody": {},
+  "forgotPasswordSend": "Send link",
+  "@forgotPasswordSend": {},
+  "forgotPasswordSent": "If an account exists for that email, a reset link is on its way. Check your inbox and spam folder.",
+  "@forgotPasswordSent": {},
+  "changePasswordButton": "Change Password",
+  "@changePasswordButton": {},
+  "currentPasswordLabel": "Current password",
+  "@currentPasswordLabel": {},
+  "newPasswordLabel": "New password",
+  "@newPasswordLabel": {},
+  "confirmNewPasswordLabel": "Confirm new password",
+  "@confirmNewPasswordLabel": {},
+  "changePasswordSave": "Update password",
+  "@changePasswordSave": {},
+  "changePasswordSuccess": "Password updated.",
+  "@changePasswordSuccess": {},
+  "currentPasswordWrong": "Your current password is incorrect.",
+  "@currentPasswordWrong": {},
+  "changePasswordFailed": "Couldn't update your password. Please try again.",
+  "@changePasswordFailed": {},
+  "newPasswordSameAsOld": "Your new password must be different from the current one.",
+  "@newPasswordSameAsOld": {},
+  "authEmailFailed": "Couldn't send the email. Please try again.",
+  "@authEmailFailed": {},
+  "stepWalkTo": "Walk to {place}",
+  "@stepWalkTo": {"placeholders": {"place": {"type": "String"}}},
+  "stepWalkToDestination": "Walk to your destination",
+  "@stepWalkToDestination": {},
+  "stepWalkMeta": "{meters} m, about {minutes}",
+  "@stepWalkMeta": {"placeholders": {"meters": {"type": "String"}, "minutes": {"type": "String"}}},
+  "rideTakeThing": "Take {thing}",
+  "@rideTakeThing": {"placeholders": {"thing": {"type": "String"}}},
+  "rideRideThing": "Ride {thing}",
+  "@rideRideThing": {"placeholders": {"thing": {"type": "String"}}},
+  "stepBoardAt": "Board at {station}",
+  "@stepBoardAt": {"placeholders": {"station": {"type": "String"}}},
+  "stepToward": "toward {place}",
+  "@stepToward": {"placeholders": {"place": {"type": "String"}}},
+  "stepRideTo": "Ride to {station}",
+  "@stepRideTo": {"placeholders": {"station": {"type": "String"}}},
+  "stepStops": "{count, plural, =1{1 stop} other{{count} stops}}",
+  "@stepStops": {"placeholders": {"count": {"type": "int"}}},
+  "stepGetOffAt": "Get off at {station}",
+  "@stepGetOffAt": {"placeholders": {"station": {"type": "String"}}},
+  "stepThenWalkTo": "then walk {meters} m to {place}, about {minutes}",
+  "@stepThenWalkTo": {"placeholders": {"meters": {"type": "String"}, "place": {"type": "String"}, "minutes": {"type": "String"}}},
+  "stepThenWalkToDestination": "then walk {meters} m to your destination, about {minutes}",
+  "@stepThenWalkToDestination": {"placeholders": {"meters": {"type": "String"}, "minutes": {"type": "String"}}},
+  "liveGetOffIn": "Get off at {station} in about {minutes}",
+  "@liveGetOffIn": {"placeholders": {"station": {"type": "String"}, "minutes": {"type": "String"}}},
+  "liveWalkMetersLeft": "{meters} m left, about {minutes}",
+  "@liveWalkMetersLeft": {"placeholders": {"meters": {"type": "String"}, "minutes": {"type": "String"}}},
+  "liveWalkLeft": "{meters} m to {place}, about {minutes}",
+  "@liveWalkLeft": {"placeholders": {"meters": {"type": "String"}, "place": {"type": "String"}, "minutes": {"type": "String"}}},
+  "routeShortRide": "{minutes} faster for {fare} EGP more",
+  "@routeShortRide": {"placeholders": {"minutes": {"type": "String"}, "fare": {"type": "String"}}},
+  "routeLongWalk": "Long walk: {minutes}",
+  "@routeLongWalk": {"placeholders": {"minutes": {"type": "String"}}},
+  "rideReportButton": "I took a vehicle",
+  "@rideReportButton": {},
+  "rideReportTitle": "What did you take?",
+  "@rideReportTitle": {},
+  "rideReportFare": "Fare (EGP)",
+  "@rideReportFare": {},
+  "rideReportStart": "Start recording",
+  "@rideReportStart": {},
+  "rideReportRecording": "Recording your ride: {distance} in {minutes}",
+  "@rideReportRecording": {"placeholders": {"distance": {"type": "String"}, "minutes": {"type": "String"}}},
+  "rideReportStop": "I got off",
+  "@rideReportStop": {},
+  "rideReportThanks": "Thanks! We'll review this ride.",
+  "@rideReportThanks": {},
+  "rideVehicleTuktuk": "Tuk-tuk",
+  "@rideVehicleTuktuk": {},
+  "rideVehicleTaxi": "Taxi",
+  "@rideVehicleTaxi": {},
+  "rideVehicleOther": "Other",
+  "@rideVehicleOther": {},
+  "tourSkip": "Skip",
+  "tourNext": "Next",
+  "tourDone": "Done",
+  "tourStepOf": "{step} of {total}",
+  "@tourStepOf": {"placeholders": {"step": {"type": "int"}, "total": {"type": "int"}}},
+  "tourWelcomeTitle": "Welcome to Guidy",
+  "tourWelcomeBody": "A quick look at what Guidy can do. It takes a minute, and you can skip it any time.",
+  "tourSearchTitle": "Plan a trip",
+  "tourSearchBody": "Tap here, type where you're going, and Guidy compares buses, microbuses, minibuses and the metro by time, fare and walking.",
+  "tourQuickTitle": "Quick destinations",
+  "tourQuickBody": "Home, Work and your saved places in one tap. Hold Home or Work to change it. They're in the search screen too, for the start or the destination.",
+  "tourRecentTitle": "Recent trips",
+  "tourRecentBody": "Your last trips, with what you saved. Tap one to see it again or start it again.",
+  "tourLinesTitle": "Lines",
+  "tourLinesBody": "Every bus, microbus and minibus line: where it goes and where it stops.",
+  "tourMetroTitle": "Metro & rail",
+  "tourMetroBody": "The metro and rail map, stations and fares.",
+  "tourTripsTitle": "Trips",
+  "tourTripsBody": "All your trips and how much time and money Guidy saved you.",
+  "tourSettingsTitle": "Settings",
+  "tourSettingsBody": "Language, dark mode, Simple mode, your account, and this tutorial if you want it again.",
+  "tourTripNowTitle": "What to do now",
+  "tourTripNowBody": "The step you're on: where to walk, which vehicle to take and where to get off. It moves on by itself as you go.",
+  "tourTripLeftTitle": "What's left of this step",
+  "tourTripLeftBody": "How far and how long until the end of this step, updated as you move. A ride shows its fare next to the line. Drag this card up for every step.",
+  "tourTripToolsTitle": "Trip tools",
+  "tourTripToolsBody": "See the whole route, share your trip live with family, or report a problem with a line.",
+  "tourTripButtonsTitle": "Map buttons",
+  "tourTripButtonsBody": "Turn the map north, bring the map back to you, and turn the alert before your stop on or off.",
+  "tourTripPipTitle": "Leave the app any time",
+  "tourTripPipBody": "On Android the trip keeps going in a small window over your other apps. Drag it to the bottom of the screen to close it.",
+  "settingsReplayTutorial": "Replay tutorial",
+  "settingsReplayTutorialSubtitle": "A quick tour of Guidy's main features",
+  "lineCityAlexandria": "Alexandria",
+  "@lineCityAlexandria": {
+    "description": "Pill on a Lines-screen card for a line in Alexandria (Cairo/Giza lines get none)"
+  },
+  "lineCityIntercity": "Cairo ⇄ Alexandria",
+  "@lineCityIntercity": {
+    "description": "Pill on a Lines-screen card for an intercity microbus between Cairo/Giza and Alexandria"
+  },
+  "commuteNotifsLabel": "Notifications",
+  "commuteNotifsSubtitle": "Best times to leave, last-ride warnings",
+  "commuteNotifsEasier": "Easier times to travel",
+  "commuteNotifsLastService": "Last-service warnings",
+  "commuteNotifsNeedHomeWork": "Save Home and Work, then plan the trip once, to get these.",
+  "commuteNotifsBlocked": "Notifications are turned off for Guidy on this phone, so these can't reach you.",
+  "commuteNotifsOpenSettings": "Turn on in phone settings",
+  "commuteChannelName": "Commute",
+  "commuteChannelDescription": "Easier times for your trips between Home and Work, and your lines' last service.",
+  "commuteLastServiceTitle": "{line} stops at {time}",
+  "@commuteLastServiceTitle": {"placeholders": {"line": {"type": "String"}, "time": {"type": "String"}}},
+  "commuteLastServiceBody": "Still out? This is the last service today for a line on your way home.",
+  "commuteEasierTitleMorning": "A good time to head to work",
+  "commuteEasierTitleEvening": "A good time to head home",
+  "commuteEasierBody": "{line} runs every {every} until {until}. Other times it's every {slow}.",
+  "@commuteEasierBody": {"placeholders": {"line": {"type": "String"}, "every": {"type": "String"}, "until": {"type": "String"}, "slow": {"type": "String"}}},
+  "commuteRushTitleMorning": "Beat the morning rush",
+  "commuteRushBodyMorning": "Leave before {time} for an easier ride to work.",
+  "@commuteRushBodyMorning": {"placeholders": {"time": {"type": "String"}}},
+  "commuteRushTitleEvening": "A quieter time to head home",
+  "commuteRushBodyEvening": "Traffic eases now, before the evening rush at {time}.",
+  "@commuteRushBodyEvening": {"placeholders": {"time": {"type": "String"}}},
+  "actWalkTo": "Walk {minutes} to",
+  "@actWalkTo": {"placeholders": {"minutes": {"type": "String"}}},
+  "actWaveDownAny": "Wave down any of these",
+  "actWaveDown": "Wave down {line} on",
+  "@actWaveDown": {"placeholders": {"line": {"type": "String"}}},
+  "actWaitForAny": "Wait for one of these",
+  "actTakeAt": "{action} at",
+  "@actTakeAt": {"placeholders": {"action": {"type": "String"}}},
+  "actAskDriverStopAt": "Ask the driver to stop at",
+  "actWaveDownRide": "Wave down a ride",
+  "actWaitForRide": "Wait for a ride",
+  "stepAskDriver": "Ask the driver: going to {place}?",
+  "@stepAskDriver": {"placeholders": {"place": {"type": "String"}}},
+  "stepWhichMicrobuses": "Which microbuses?",
+  "stepWhichBuses": "Which buses?",
+  "actGetOffAt": "Get off at",
+  "actGetOffWalkTo": "Get off, then walk {minutes} to",
+  "@actGetOffWalkTo": {"placeholders": {"minutes": {"type": "String"}}},
+  "actYourDestination": "your destination",
+  "navStepDone": "Done",
+  "navStepLater": "Later",
+  "navBackToNow": "Back to now",
+  "navPrevStep": "Previous step",
+  "navNextStep": "Next step",
+  "routeDetailsTitle": "Route details",
+  "routeLeave": "Leave",
+  "routeGetOff": "Get off",
+  "routeAskDriverStop": "Ask the driver to stop",
+  "routeArrive": "Arrive",
+  "routeRideFold": "Ride {stops}",
+  "@routeRideFold": {
+    "placeholders": {
+      "stops": {"type": "String"}
+    }
+  },
+  "routeWalkLeg": "Walk {minutes}, {distance}",
+  "@routeWalkLeg": {
+    "placeholders": {
+      "minutes": {"type": "String"},
+      "distance": {"type": "String"}
+    }
+  },
+  "simpleWhereToGo": "Where do you want to go?",
+  "simpleGoHome": "Go home",
+  "simpleGoWork": "Go to work",
+  "simpleSavedPlaces": "My saved places",
+  "simpleMyTrips": "My trips",
+  "simpleTapToChoose": "Tap to choose the place",
+  "simpleChangePlace": "Change",
+  "simpleGoAgain": "Go again",
+  "simpleFrom": "From: {place}",
+  "@simpleFrom": {"placeholders": {"place": {"type": "String"}}},
+  "simpleChangeStart": "Change starting point",
+  "simpleUseMyLocation": "Use my location",
+  "simpleBack": "Back",
+  "simpleBackHome": "Back to Home",
+  "simpleRoutesTitle": "Choose how to go",
+  "simpleRoutesHint": "The easiest ways, fewest changes first",
+  "simpleOption": "Option {n}",
+  "@simpleOption": {"placeholders": {"n": {"type": "int"}}},
+  "simpleEasiest": "Easiest",
+  "simpleChanges": "{count, plural, =0{No changes} =1{1 change} other{{count} changes}}",
+  "@simpleChanges": {"placeholders": {"count": {"type": "int"}}},
+  "simpleWalkFor": "Walk {minutes}",
+  "@simpleWalkFor": {"placeholders": {"minutes": {"type": "String"}}},
+  "simpleTripTotal": "{minutes}, {fare}",
+  "@simpleTripTotal": {"placeholders": {"minutes": {"type": "String"}, "fare": {"type": "String"}}},
+  "simpleStartTrip": "Start this trip",
+  "simpleNoRoutes": "We could not find a way to go. Please try another place.",
+  "simpleStepOf": "Step {n} of {total}",
+  "@simpleStepOf": {"placeholders": {"n": {"type": "int"}, "total": {"type": "int"}}},
+  "simpleWalkTo": "Walk to {place}",
+  "@simpleWalkTo": {"placeholders": {"place": {"type": "String"}}},
+  "simpleRideTo": "{action} to {place}",
+  "@simpleRideTo": {"placeholders": {"action": {"type": "String"}, "place": {"type": "String"}}},
+  "simpleGetOffAt": "Get off at {place}",
+  "@simpleGetOffAt": {"placeholders": {"place": {"type": "String"}}},
+  "simpleWalkOn": "Walk to your destination",
+  "simpleTellDriver": "Tell the driver: “{place}”",
+  "@simpleTellDriver": {"placeholders": {"place": {"type": "String"}}},
+  "simpleNextStep": "Next step",
+  "simpleEndTrip": "End trip",
+  "simpleEndTripTitle": "End this trip?",
+  "simpleEndTripBody": "The directions will stop. You can start the trip again from the list of ways to go.",
+  "simpleEndTripYes": "Yes, end trip",
+  "simpleKeepGoing": "No, keep going",
+  "simpleClearTitle": "Clear your recent searches?",
+  "simpleClearBody": "This only removes the list. Your saved places stay.",
+  "simpleClearYes": "Yes, clear",
+  "simpleSettingsOn": "Simple Mode is on",
+  "simpleSettingsOnHint": "Turn it off to see every feature again.",
+  "simpleLogOutTitle": "Log out of Guidy?",
+  "simpleLogOutBody": "You will need to sign in again to use your saved places and trips.",
+  "simpleLogOutYes": "Yes, log out",
+  "simpleTurnOff": "Turn off Simple Mode",
+  "walkReportButton": "This walk is wrong",
+  "walkReportedLabel": "Walk reported",
+  "walkReportTitle": "What is wrong with this walk?",
+  "walkReasonBuildings": "It goes through buildings",
+  "walkReasonTooLong": "It is too long",
+  "walkReasonNoPath": "The path does not exist",
+  "walkReasonOther": "Something else",
+  "walkReportNote": "Add a note (optional)",
+  "walkReportSend": "Send report",
+  "walkReportThanks": "Thanks! We will check this walk.",
+  "@walkReportButton": {},
+  "@walkReportedLabel": {},
+  "@walkReportTitle": {},
+  "@walkReasonBuildings": {},
+  "@walkReasonTooLong": {},
+  "@walkReasonNoPath": {},
+  "@walkReasonOther": {},
+  "@walkReportNote": {},
+  "@walkReportSend": {},
+  "@walkReportThanks": {},
+  "tripSharingLabel": "Share my trips",
+  "tripSharingSubtitle": "Helps fix bus routes and missing footpaths.",
+  "tripSharingInfoTooltip": "What this shares",
+  "tripSharingInfoTitle": "What \"Share my trips\" does",
+  "tripSharingInfoBody": "Only while you follow a trip in Guidy, it records:\n\n• The route you rode: the lines and stops, when you reached each step, and your phone's GPS along the way. This is how Guidy learns that a bus or microbus now takes a different street, and fixes the line for everyone.\n\n• The paths you walk on the trip's walking steps. Before anything is sent, the first and last 50 metres of each walk are cut off, so your home, work and other doors stay out of it. This finds footpaths and crossings missing from the map.\n\nNothing is recorded when you're not following a trip. What's sent is kept with the trip it came from, without your name, and deleted after 180 days. Deleting your account removes what ties it to you.\n\nThis is on by default, as our Terms and Privacy Policy say. You can turn it off here at any time: nothing more is recorded, and anything not sent yet is deleted.",
+  "tripSharingInfoOk": "OK",
+  "tripShareAskTitle": "Help improve Guidy",
+  "tripShareAskBody": "Share this trip's path to help fix bus routes and missing footpaths?",
+  "tripShareAskYes": "Share",
+  "tripShareAskNo": "Not now",
+  "whatsNewTitle": "What's new in Guidy",
+  "whatsNewOk": "Got it",
+  "commuteInfoTooltip": "About commute notifications",
+  "commuteInfoTitle": "Commute notifications",
+  "commuteInfoBody": "Guidy watches the trip between your saved Home and Work, both ways. Save Home and Work, then plan that trip once: Guidy remembers its lines and looks them up again every two weeks.\n\nIt can send two kinds of alert, each with its own switch:\n• Easier times to travel: when one of your lines runs much more often than usual (mornings 5-11, afternoons 1-9). If your lines have no timetable, it warns you before the morning (7:00) and evening (4:30) rush hours.\n• Last-service warning: 45 minutes before the first of your lines stops for the day.\n\nAt most 3 a day, at least an hour apart, and none on Fridays.\n\nIt is planned on your phone from the lines' timetables, with no account needed, and nothing about you is sent to make it. The alerts arrive even when Guidy is closed.\n\nTo turn them off, use the switches under \"Notifications\": one for each kind, or the top one for all of them.",
+  "patchNotesTitle": "Patch notes",
+  "patchNotesSubtitle": "What changed in every version",
+  "patchNotesCurrent": "You are here",
+  "removeBannerTitle": "Hide the banner for 24 hours",
+  "@removeBannerTitle": {},
+  "removeBannerSubtitle": "Watch a short ad. Other ads stay.",
+  "@removeBannerSubtitle": {},
+  "removeBannerActive": "Banner hidden until {time}",
+  "@removeBannerActive": {"placeholders":{"time":{"type":"String"}}},
+  "removeBannerUnavailable": "No ad is available right now. Please try again later.",
+  "@removeBannerUnavailable": {},
+  "removeBannerDone": "Done. The banner is hidden for 24 hours.",
+  "@removeBannerDone": {},
+  "removeBannerNotWatched": "The banner stays: the ad has to be watched to the end.",
+  "@removeBannerNotWatched": {},
+  "currentTripLabel": "In progress",
+  "@currentTripLabel": {},
+  "currentTripTitle": "Your trip to {place}",
+  "@currentTripTitle": {"placeholders": {"place": {"type": "String"}}},
+  "tripGoingTo": "Going to {place}",
+  "@tripGoingTo": {"placeholders": {"place": {"type": "String"}}},
+  "currentTripLeft": "About {minutes} left",
+  "@currentTripLeft": {"placeholders": {"minutes": {"type": "String"}}},
+  "currentTripTap": "Tap to continue",
+  "@currentTripTap": {},
+  "tripChannelName": "Trip in progress",
+  "@tripChannelName": {},
+  "tripChannelDescription": "Your current step while a trip is running.",
+  "@tripChannelDescription": {},
+  "tripAlertChannelName": "Stop alerts",
+  "@tripAlertChannelName": {},
+  "tripAlertChannelDescription": "A heads-up when your stop is coming.",
+  "@tripAlertChannelDescription": {},
+  "tripNearTitle": "Get ready",
+  "@tripNearTitle": {},
+  "tripNearBody": "{place} is coming up. Time to get off or change.",
+  "@tripNearBody": {"placeholders": {"place": {"type": "String"}}}
+}

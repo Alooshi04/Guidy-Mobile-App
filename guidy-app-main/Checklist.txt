@@ -1,0 +1,17 @@
+### 🛠️ Code Quality Checklist
+- [x] Code follows correct or clear style (indentation, naming, comments).
+- [x] Error handling is present (e.g., try-catch, validation).
+- [x] No commented-out code or unused variables.
+- [x] Code is readable — others can understand it without explanation.
+- [x] No duplicated code.
+
+### 🧪 Testing Checklist
+- [x] Happy path tested (normal inputs, expected behavior).
+- [x] Edge cases tested (empty, null, max/min values).
+- [x] Negative tests performed (invalid inputs, wrong data types).
+- [x] No crashes or unhandled exceptions.
+
+### 👀 Review Checklist
+- [x] Self-review completed (walked through own code).
+- [ ] Peer review completed.
+- [x] Checked that all requirements from the QA assignment are met.

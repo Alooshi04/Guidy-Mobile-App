@@ -1,0 +1,3 @@
+#include "Generated.xcconfig"
+// Optional, gitignored: MAPS_API_KEY_IOS = <key>  (see AppDelegate.swift)
+#include? "Secrets.xcconfig"

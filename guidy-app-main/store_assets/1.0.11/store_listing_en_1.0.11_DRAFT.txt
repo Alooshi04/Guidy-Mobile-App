@@ -1,0 +1,51 @@
+APP NAME (30 max)
+Guidy
+
+SHORT DESCRIPTION (80 max)
+Metro, bus and microbus routes in Cairo and Alexandria, with the fare upfront.
+
+FULL DESCRIPTION (4000 max)
+Guidy plans your trip across Greater Cairo and Alexandria using the transport people actually ride: the metro, public buses, minibuses and microbuses.
+
+Tell Guidy where you're going and it finds routes that mix metro, bus, minibus, microbus and short walks. You see what each trip costs, how long it takes, how far you'll walk and how many times you change, so you can pick the one that suits you.
+
+TWO CITIES, ONE APP
+• Greater Cairo and Giza, and Alexandria, with the microbuses that connect them
+• Alexandria's buses, minibuses and microbuses, including lines to Borg El-Arab and Abu Qir
+• Filter the Lines tab to Alexandria's lines and the Cairo to Alexandria microbuses in one tap
+
+ROUTES FOR REAL TRANSIT
+• Metro, buses, minibuses and microbuses in one trip planner
+• Includes microbus and minibus routes that most map apps leave out
+• Compare the fastest, cheapest and least-walking options side by side
+• Leave out the metro, or set how far you're willing to walk
+
+KNOW THE FARE BEFORE YOU GO
+• See the estimated fare for every leg and the total for the trip
+• Alexandria buses use the official APTA ticket prices; microbus fares follow the distance you ride
+• Check metro ticket prices by number of stations
+
+STEP-BY-STEP GUIDANCE
+• Clear directions for every leg: where to walk, which line to take and where to get off
+• Follow your trip on the map as you ride
+
+LINES AND METRO TOOLS
+• Browse bus, minibus and microbus lines by number or by area, and see every stop a line makes
+• Metro planner: pick two stations and see the route and where to change lines
+
+SAVE YOUR DAILY TRIPS
+• Save your home, work and favourite places
+• Save your regular commutes and open them in one tap, even offline
+• Trip history shows the time and money your route choices saved you
+
+HELP MAKE THE DATA BETTER
+Transit routes change all the time. If a route or fare is wrong, report it from the app and we'll fix it for everyone.
+
+MADE FOR YOU
+• Arabic and English
+• Light and dark mode
+• Use it as a guest, or sign in to back up your saved places and trips
+
+Your privacy matters: Guidy uses your location only to find nearby stops and plan your routes. Read our privacy policy at https://guidyapp.com/privacy
+
+Fares and times are estimates and may vary.

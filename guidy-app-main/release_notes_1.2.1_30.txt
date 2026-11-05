@@ -1,0 +1,22 @@
+<en-US>
+Guidy 1.2.1 (30): clearer routes, calmer trips.
+- Route cards show your walk in metres and the line to take.
+- Less text on the trip screen, more map.
+- Know a better route? Tell us, or build it yourself.
+- Stop alerts only while you ride.
+- Bigger, steadier arrow; the map no longer spins.
+- Long trips in hours and minutes.
+- Fares next to each line.
+- Walk steps move on when you arrive.
+</en-US>
+<ar>
+جايدي 1.2.1 (30): طرق أوضح ومشاوير أهدى.
+- كروت الطرق بتقولك هتمشي كام متر وتركب أنهي خط.
+- كلام أقل في شاشة المشوار، وخريطة أكبر.
+- تعرف طريق أحسن؟ قولنا، أو ابنيه بنفسك.
+- تنبيه النزول وإنت راكب بس.
+- سهم أكبر وأثبت، والخريطة مبقتش بتلف.
+- المشاوير الطويلة بالساعات والدقايق.
+- الأجرة جنب كل خط.
+- خطوة المشي بتخلص أول ما توصل.
+</ar>

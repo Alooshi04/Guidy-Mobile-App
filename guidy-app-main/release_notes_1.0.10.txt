@@ -1,0 +1,14 @@
+<en-US>
+Guidy now covers Alexandria!
+- Plan trips inside Alexandria: APTA buses, microbuses, minibuses and tomnaya.
+- Travel between Cairo/Giza and Alexandria by intercity microbus (from Aboud, Ramses and Moneeb).
+- Place search finds places near you, in either city.
+- Lines screen marks Alexandria and intercity lines, and shows their real fares.
+</en-US>
+<ar>
+Guidy بقى في إسكندرية!
+- خطط مشاويرك جوه إسكندرية: أتوبيسات هيئة النقل العام، ميكروباصات، ميني باصات وتمناية.
+- سافر بين القاهرة/الجيزة وإسكندرية بالميكروباص من عبود ورمسيس والمنيب.
+- البحث عن الأماكن بيلاقي الأماكن اللي جنبك في أي مدينة.
+- شاشة الخطوط بتميّز خطوط إسكندرية والسفر، وبتعرض أجرتها الحقيقية.
+</ar>

@@ -1,0 +1,14 @@
+{
+  "name": "guidy-firestore-rules-test",
+  "private": true,
+  "type": "module",
+  "description": "Emulator tests for ../../firestore.rules. Run: npm install && npm test (needs Java).",
+  "scripts": {
+    "test": "firebase emulators:exec --only firestore --project guidy-rules-test \"node test.mjs\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "firebase": "^12.19.0",
+    "firebase-tools": "^13.35.1"
+  }
+}

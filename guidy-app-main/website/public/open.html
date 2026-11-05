@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Guidy</title>
+<!-- Behind every shared Guidy link (/r?..., /l/...). With Guidy installed
+     on Android the verified link opens the app before this page loads.
+     Otherwise this page tries the app (guidy:// scheme) and falls back to
+     the store. -->
+<style>
+  :root { color-scheme: light dark; --bg:#f8fafc; --fg:#0b1b2b; --muted:#64748b; --accent:#1f8a8a; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1722; --fg:#f1f5f9; --muted:#94a3b8; } }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif; }
+  main { max-width:360px; padding:24px 16px; text-align:center; }
+  img { width:84px; height:84px; }
+  h1 { font-size:22px; margin:16px 0 8px; }
+  p { color:var(--muted); line-height:1.6; margin:0 0 20px; }
+  a.btn { display:block; padding:14px; border-radius:14px; background:var(--accent); color:#fff;
+          text-decoration:none; font-weight:700; margin-bottom:10px; }
+  a.alt { display:block; color:var(--accent); font-weight:600; text-decoration:none; padding:8px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="/logo_light.png" alt="Guidy">
+  <h1 id="title">بنفتح Guidy…</h1>
+  <p id="msg">لو التطبيق مش متسطّب عندك، نزّله الأول وبعدين افتح اللينك تاني.</p>
+  <a class="btn" id="open" href="#">افتح في Guidy</a>
+  <a class="alt" id="store" href="#">نزّل Guidy من Google Play</a>
+</main>
+<script>
+(function () {
+  var PKG = "com.guidy.guidy_app";
+  var STORE = "https://play.google.com/store/apps/details?id=" + PKG;
+  var path = location.pathname.replace(/^\/+/, "");      // "r" or "l/TOKEN"
+  var app = "guidy://" + path + location.search;
+  var ua = navigator.userAgent || "";
+  var android = /Android/i.test(ua);
+  var en = !/^ar/i.test(navigator.language || "");
+  if (en) {
+    document.documentElement.lang = "en"; document.documentElement.dir = "ltr";
+    document.getElementById("title").textContent = "Opening Guidy…";
+    document.getElementById("msg").textContent = "If you don't have the app yet, install it first, then open the link again.";
+    document.getElementById("open").textContent = "Open in Guidy";
+    document.getElementById("store").textContent = "Get Guidy on Google Play";
+  }
+  // Android: an intent link opens Guidy if installed, the store if not.
+  var target = android
+    ? "intent://" + path + location.search + "#Intent;scheme=guidy;package=" + PKG +
+      ";S.browser_fallback_url=" + encodeURIComponent(STORE) + ";end"
+    : app;
+  document.getElementById("open").href = target;
+  document.getElementById("store").href = STORE;
+  if (android) {
+    location.replace(target);
+  } else {
+    location.href = app;
+    setTimeout(function () { if (!document.hidden) location.replace(STORE); }, 1800);
+  }
+})();
+</script>
+</body>
+</html>

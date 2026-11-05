@@ -1,0 +1,432 @@
+name: CI
+
+# WHY THIS EXISTS
+#
+# `flutter analyze` has never been run against roughly 1,200 lines of
+# hand-written Dart in this app -- Flutter lives only on the one Windows
+# machine this project is developed on, and the sandboxes that wrote much
+# of that Dart have no Flutter toolchain at all. Code no compiler has seen
+# is not code that works; it is code that has not failed yet.
+#
+# The iOS job is the sharper case: no Windows or Linux machine can build
+# for iOS at all, so that target has never been compiled even once. A Mac
+# runner is the only way to find out whether it does.
+
+on:
+  push:
+    branches: [main, "ci/**", "feat/**", "fix/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          # Pinned: an unpinned "stable" moved to 3.47 on its own and the
+          # app stopped compiling (material.dart dropped a Cupertino
+          # re-export). Bump this deliberately, after analyze + test pass.
+          flutter-version: 3.47.5
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      # lib/l10n/app_localizations*.dart are GENERATED. They have been
+      # hand-patched more than once (Flutter isn't runnable from the
+      # sandboxes that edit this repo), and one of those patches inserted
+      # 43 declarations inside a function body after a `throw` -- ~100
+      # parse errors that went unnoticed for four commits because a later
+      # gen-l10n silently fixed the file back up.
+      #
+      # So: regenerate first, and let gen-l10n's output win, exactly as
+      # the project's own notes say. `flutter analyze` below then sees the
+      # authoritative version rather than whatever was committed.
+      - run: flutter gen-l10n
+
+      # Informational, deliberately not a failure. A stale committed copy
+      # still builds fine here (gen-l10n just overwrote it), but it means
+      # the repo carries generated files that disagree with their .arb
+      # source, which is worth seeing before it becomes a merge conflict.
+      - name: Report whether the committed l10n files were stale
+        if: always()
+        run: |
+          if git diff --quiet -- lib/l10n/; then
+            echo "Committed l10n matches gen-l10n output."
+          else
+            echo "::warning::Committed lib/l10n/ was stale; gen-l10n regenerated it."
+            git diff --stat -- lib/l10n/
+          fi
+
+      - run: flutter analyze
+
+      - run: flutter test
+
+      # install_on_iphone.ps1's helpers: IPA validation, Sideloadly lookup,
+      # the resumable download (fake curl that drops the connection), the
+      # same-length backend-address patch inside the IPA and its port
+      # choice, and the firewall-profile check. Runners ship pwsh and Pester 5.
+      - name: Pester tests for install_on_iphone.ps1
+        shell: pwsh
+        run: Invoke-Pester ./install_on_iphone.Tests.ps1 -CI -Output Detailed
+
+      # The Windows scripts (setup_windows.ps1, run_app.ps1, the installers)
+      # can't run on Linux, and a syntax error in one only shows up when
+      # someone double-clicks it on a fresh PC. Parse every one of them.
+      - name: PowerShell scripts parse
+        shell: pwsh
+        run: |
+          $bad = 0
+          $files = git ls-files '*.ps1'
+          foreach ($f in $files) {
+            $errs = $null
+            $toks = $null
+            [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $f).Path, [ref]$toks, [ref]$errs) | Out-Null
+            foreach ($e in $errs) {
+              Write-Output "::error file=$f,line=$($e.Extent.StartLineNumber)::$($e.Message)"
+              $bad++
+            }
+          }
+          Write-Output "$(@($files).Count) PowerShell files parsed, $bad error(s)."
+          if ($bad) { exit 1 }
+
+  # Shell tooling: the Mac launchers (tool/mac, *.command) and the public
+  # mirror's key handling (make_ci_snapshot.sh / restore_ci_keys.sh). Both
+  # test scripts use fakes only -- no Flutter, no Xcode, no real keys.
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: shellcheck
+        run: |
+          shellcheck --version | head -2
+          shellcheck -s bash -e SC1091,SC2015 setup_mac.sh run_ios.sh ./*.command \
+            tool/mac/*.sh tool/test_ci_snapshot.sh
+          shellcheck -s sh -e SC1091 tool/make_ci_snapshot.sh tool/restore_ci_keys.sh
+
+      - name: Launchers are executable in git
+        run: |
+          bad=$(git ls-files -s -- '*.command' 'tool/mac/install_*.sh' setup_mac.sh run_ios.sh | awk '$1 != "100755" {print $4}')
+          if [ -n "$bad" ]; then echo "::error::not executable in git (git update-index --chmod=+x): $bad"; exit 1; fi
+
+      - name: CI mirror snapshot + key restore
+        run: bash tool/test_ci_snapshot.sh
+
+      - name: Mac installers (fake flutter/adb/xcrun)
+        run: bash tool/mac/test_installers.sh
+
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      # The debug build fills the runner's disk ("No space left on device"
+      # while stripping native libraries), which failed every run from
+      # 2026-10-10 on. The runner image ships ~25 GB of toolchains this job
+      # never uses; drop them first. NOT /usr/local/lib/android: that is the
+      # Android SDK the build needs.
+      - name: Free disk space
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /usr/share/swift \
+            /usr/local/share/boost /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          # Pinned: an unpinned "stable" moved to 3.47 on its own and the
+          # app stopped compiling (material.dart dropped a Cupertino
+          # re-export). Bump this deliberately, after analyze + test pass.
+          flutter-version: 3.47.5
+          channel: stable
+          cache: true
+
+      # android/gradle.properties IS committed, and it pins this developer's
+      # own JDK: org.gradle.java.home=C:\Program Files\Android\Android
+      # Studio\jbr. No runner has that path, so Gradle aborts with "Java
+      # home supplied is invalid" before compiling a single file.
+      #
+      # Stripped here rather than removed from the repo, because the line
+      # is load-bearing on the machine this app is actually developed on.
+      # android.useAndroidX must survive, so this edits the file rather
+      # than deleting it. The 8G heap is also dropped -- it is tuned for a
+      # desktop, and asking a runner for more than it has is its own
+      # failure mode.
+      - name: Make gradle.properties portable for this runner
+        working-directory: android
+        run: |
+          sed -i -e '/org\.gradle\.java\.home/d' \
+                 -e 's/-Xmx8G/-Xmx4G/' \
+                 -e 's/MaxMetaspaceSize=4G/MaxMetaspaceSize=1G/' gradle.properties
+          echo "--- gradle.properties as CI will use it ---"
+          cat gradle.properties
+
+      - run: flutter pub get
+      - run: flutter gen-l10n
+
+      # The public mirror's snapshot has every Google API key replaced by a
+      # placeholder (tool/make_ci_snapshot.sh). Put the real ones back from
+      # repository secrets; unset secrets keep the placeholder, which still
+      # builds. No-op in the private repo.
+      - name: Restore redacted API keys (public mirror)
+        env:
+          FIREBASE_API_KEY_ANDROID: ${{ secrets.FIREBASE_API_KEY_ANDROID }}
+          MAPS_API_KEY_ANDROID: ${{ secrets.MAPS_API_KEY_ANDROID }}
+        run: sh tool/restore_ci_keys.sh FIREBASE_API_KEY_ANDROID MAPS_API_KEY_ANDROID
+
+      # secrets.properties is correctly gitignored; build.gradle.kts falls
+      # back to secrets.properties.example, which IS committed. The APK
+      # therefore builds with placeholder keys -- Maps and AdMob won't do
+      # anything at runtime, which is exactly right for a build check.
+      # Runtime keys come from --dart-define (see run_app.bat), not from
+      # anything a compile needs.
+      - run: flutter build apk --debug
+
+      # ~100 MB a run. At the default 90 days these filled the private
+      # repo's artifact quota (2.8 GB by 2026-10-13) and every upload failed.
+      # A week is enough to grab a build to test; the build itself passing
+      # is what this job checks, so a full quota doesn't fail it.
+      - uses: actions/upload-artifact@v6
+        continue-on-error: true
+        with:
+          name: guidy-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
+
+  # iOS: compile, launch on a simulator, and build an unsigned device IPA.
+  #
+  # Unsigned on purpose: there is no Apple Developer identity here. The IPA
+  # is for sideloading (install_on_iphone.bat re-signs it with the
+  # installer's own Apple ID), and the simulator launch answers the question
+  # a compile cannot -- does the app actually open on iOS?
+  ios:
+    # macOS runners bill at 10x on a PRIVATE repo, and this job exhausted the
+    # private repo's free allowance on 2026-09-15 when it ran on every push.
+    # Public repos (the guidy-*-ci-mirror repos) get macOS minutes free, so
+    # there it runs on every push again. On the private repo a direct push
+    # still never triggers it; pull_request and workflow_dispatch do.
+    if: >-
+      github.event_name != 'push' ||
+      github.event.repository.private == false
+    runs-on: macos-latest
+    timeout-minutes: 75
+    # A newer push supersedes an older run, so an older IPA can never be
+    # published over a newer one.
+    concurrency:
+      group: ios-${{ github.repository }}-${{ github.ref }}
+      cancel-in-progress: true
+    permissions:
+      contents: write   # publishing the ios-latest prerelease (public repo only)
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          # Pinned: an unpinned "stable" moved to 3.47 on its own and the
+          # app stopped compiling (material.dart dropped a Cupertino
+          # re-export). Bump this deliberately, after analyze + test pass.
+          flutter-version: 3.47.5
+          channel: stable
+          cache: true
+      # google_mobile_ads is CocoaPods-only while webview_flutter_wkwebview
+      # has moved to Swift Package Manager, and Flutter refuses to resolve a
+      # project that needs both. Turning SPM off sends everything back
+      # through CocoaPods, which both plugins support. Runner-level only;
+      # remove once google_mobile_ads ships SPM support.
+      - run: flutter config --no-enable-swift-package-manager
+
+      - run: flutter pub get
+      - run: flutter gen-l10n
+
+      # See the android job: the mirror's keys are placeholders until this
+      # puts the real ones back from secrets.
+      - name: Restore redacted API keys (public mirror)
+        env:
+          FIREBASE_API_KEY_APPLE: ${{ secrets.FIREBASE_API_KEY_APPLE }}
+          MAPS_API_KEY_IOS: ${{ secrets.MAPS_API_KEY_IOS }}
+        run: sh tool/restore_ci_keys.sh FIREBASE_API_KEY_APPLE MAPS_API_KEY_IOS
+
+      # Optional: a real Maps SDK key for the build (Info.plist GMSApiKey).
+      # Without the secret the app still builds and launches; map tiles are
+      # just blank. Written to the gitignored xcconfig the Runner configs
+      # #include?.
+      - name: Provide MAPS_API_KEY_IOS to Xcode (if configured)
+        env:
+          MAPS_API_KEY_IOS: ${{ secrets.MAPS_API_KEY_IOS }}
+        run: |
+          if [ -n "$MAPS_API_KEY_IOS" ]; then
+            # Google API keys are "AIza" + 35 chars. A stray "=" or space
+            # copied along with the value (this happened: the secret was
+            # saved as "=AIza...") builds fine and silently ships a key
+            # Google rejects, so fail here instead of 50 minutes later.
+            if ! printf '%s' "$MAPS_API_KEY_IOS" | grep -Eq '^AIza[0-9A-Za-z_-]{35}$'; then
+              echo "::error::MAPS_API_KEY_IOS secret is malformed (expected AIza + 35 characters, no '=', quotes or spaces). Re-save it with only the value after '=' in secrets.properties."
+              exit 1
+            fi
+            printf 'MAPS_API_KEY_IOS = %s\n' "$MAPS_API_KEY_IOS" > ios/Flutter/Secrets.xcconfig
+            echo "MAPS_API_KEY_IOS configured."
+          else
+            echo "::notice::No MAPS_API_KEY_IOS secret; iOS map tiles will be blank."
+          fi
+
+      # A simulator build needs no signing identity and compiles the same
+      # Dart, Objective-C and Swift as a device build.
+      - run: flutter build ios --simulator --debug
+
+      - name: Launch on the iOS simulator (smoke test)
+        run: bash .github/scripts/ios_sim_smoke.sh build/ios/iphonesimulator/Runner.app build/ios-smoke
+
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: ios-simulator-smoke
+          path: build/ios-smoke
+          if-no-files-found: ignore
+
+      # Device build without signing. NOT `flutter build ios --no-codesign`
+      # alone: CocoaPods resource-bundle targets still demand a Development
+      # Team on a device build (that is how an earlier attempt died after a
+      # full Xcode build). Passing CODE_SIGNING_ALLOWED=NO to xcodebuild
+      # overrides it for every target, Pods included. --config-only makes
+      # flutter write Generated.xcconfig (release mode, dart-defines) and run
+      # pod install; xcodebuild's Flutter build phase then does the rest.
+      - name: Build unsigned device IPA
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        run: |
+          DEFINES=()
+          [ -n "$API_BASE_URL" ] && DEFINES+=(--dart-define=API_BASE_URL="$API_BASE_URL")
+          flutter build ios --release --no-codesign --config-only "${DEFINES[@]}"
+          [ -d ios/Pods ] || (cd ios && pod install)
+          # Full log to a file: the real `error:` lines come long before the
+          # summary at the end, so print those explicitly on failure.
+          if ! xcodebuild \
+            -workspace ios/Runner.xcworkspace -scheme Runner \
+            -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/ios-device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build > build/xcodebuild-device.log 2>&1; then
+            grep -E "error:|BUILD FAILED" build/xcodebuild-device.log | head -60
+            tail -n 80 build/xcodebuild-device.log
+            exit 1
+          fi
+          tail -n 5 build/xcodebuild-device.log
+          mkdir -p build/ipa/Payload
+          cp -R build/ios-device/Build/Products/Release-iphoneos/Runner.app build/ipa/Payload/
+          (cd build/ipa && zip -qry ../Guidy-unsigned.ipa Payload)
+
+      - uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: xcodebuild-device-log
+          path: build/xcodebuild-device.log
+          if-no-files-found: ignore
+
+      - name: Verify the IPA
+        run: bash .github/scripts/verify_ipa.sh build/Guidy-unsigned.ipa
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: guidy-ios-unsigned-ipa
+          path: build/Guidy-unsigned.ipa
+          if-no-files-found: error
+
+      # Artifacts need a GitHub login to download, even on a public repo; a
+      # release asset does not. install_on_iphone.bat pulls from here.
+      # Only the public mirror publishes, and only from main.
+      - name: Publish as the ios-latest prerelease
+        if: >-
+          github.event.repository.private == false &&
+          github.ref == 'refs/heads/main' &&
+          github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Update in place so the download URL never 404s mid-publish.
+          NOTES="Unsigned device build of ${GITHUB_SHA::7}. Install with install_on_iphone.bat (re-signs it with your Apple ID via Sideloadly)."
+          git tag -f ios-latest "$GITHUB_SHA"
+          git push -f origin refs/tags/ios-latest
+          if gh release view ios-latest >/dev/null 2>&1; then
+            gh release edit ios-latest --prerelease --notes "$NOTES"
+          else
+            gh release create ios-latest --prerelease --verify-tag \
+              --title "Guidy iOS (unsigned, latest main)" --notes "$NOTES"
+          fi
+          gh release upload ios-latest build/Guidy-unsigned.ipa --clobber
+
+  # The legal pages in website/public/ are generated from the markdown in
+  # website/legal/ and committed, so the site builds without Python. The
+  # cost of that is drift: edit PRIVACY_POLICY.md, forget to rebuild, and the page the world
+  # actually reads keeps saying the old thing. For a document Meta and
+  # both app stores fetch, a stale copy is the worst kind to have.
+  #
+  # Same guard the backend repo uses for gtfs_data/: re-run the generator
+  # and require a clean tree afterwards. The output is deterministic --
+  # no timestamps, nothing ordered by anything but the PAGES list -- so
+  # any diff here is a real one.
+  site-matches-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      # Pinned: a different markdown release can render the same source
+      # into slightly different HTML, which would fail this check without
+      # anything actually being wrong.
+      - run: pip install markdown==3.10.3
+
+      # secrets.properties is committed to the PRIVATE repo only. If it is
+      # ever present in a public repo (the CI mirror), fail loudly: every
+      # key in it needs rotating.
+      - name: No secrets file in a public repository
+        if: github.event.repository.private == false
+        run: |
+          if [ -e secrets.properties ]; then
+            echo "::error::secrets.properties is published in a PUBLIC repo -- delete it and rotate every key in it."
+            exit 1
+          fi
+          # Google API keys belong in repository secrets here, never in the
+          # tree (tool/make_ci_snapshot.sh redacts them). Paths only, no values.
+          if git grep -qE 'AIza[0-9A-Za-z_-]{35}'; then
+            echo "::error::A Google API key is committed in this PUBLIC repo -- rebuild the snapshot with tool/make_ci_snapshot.sh:"
+            git grep -lE 'AIza[0-9A-Za-z_-]{35}'
+            exit 1
+          fi
+          if [ -e android/key.properties ] || [ -n "$(git ls-files '*.jks' '*.keystore')" ]; then
+            echo "::error::The Android signing key is published in a PUBLIC repo -- remove it and reset the upload key in Play Console."
+            exit 1
+          fi
+
+      - name: Tests for tool/secrets_to_defines.py (run_ios.sh helper)
+        run: python3 -m unittest tool/test_secrets_to_defines.py
+
+      # Palette/readability/font checks for the stylesheet build_legal.py
+      # emits -- it reads AppColors from lib/theme/app_theme.dart, so an app
+      # re-theme that forgets the site (or vice versa) fails here.
+      - run: python3 -m unittest discover -s website/legal
+
+      - run: python3 website/legal/build_legal.py
+
+      - name: The legal pages must match their markdown
+        run: |
+          if ! git diff --quiet -- website/public/; then
+            echo "::error::website/public/ is stale -- it does not match the markdown in website/legal/."
+            echo "Run 'npm run legal' in website/ and commit the result."
+            git diff --stat -- website/public/
+            exit 1
+          fi
+          echo "website/public/ is in sync with its sources."
+
+      # The whole site (what Firebase Hosting publishes) must build.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci && npm run build
+        working-directory: website

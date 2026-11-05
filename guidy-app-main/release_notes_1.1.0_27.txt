@@ -1,0 +1,10 @@
+<en-US>
+Guidy 1.1 (27): small fixes.
+- Dark mode: the white strip at the bottom of the screen is gone; the navigation bar now matches the app.
+- Stability and performance improvements.
+</en-US>
+<ar>
+جايدي 1.1 (27): تصليحات صغيرة.
+- الوضع الداكن: الشريط الأبيض اللي كان تحت الشاشة اختفى، وشريط التنقل بقى بنفس لون التطبيق.
+- تحسينات في الثبات والأداء.
+</ar>

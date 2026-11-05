@@ -1,0 +1,173 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- A trip in progress keeps location alive in the background through
+         geolocator's foreground service (declared as type "location" by the
+         plugin): see TripNotification. Play Console needs the Foreground
+         service declaration for location (navigation). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Commute notifications are scheduled on the phone; after a reboot
+         the plugin puts them back. Inexact alarms only: no exact-alarm
+         permission. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- Advertising ID, read by the Google Mobile Ads SDK. Required on
+         Android 13+ (target 33+) or the ID comes back zeroed. Declared in the
+         Play Data safety form as Device or other IDs / advertising. -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+
+    <application
+        android:label="Guidy"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:supportsPictureInPicture="true"
+            android:resizeableActivity="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <!-- Links are handled by app_links + DeepLinkService. Flutter's
+                 own deep linking (on by default since 3.27) would also push
+                 the link's path ("/r", "/maps/...") as a named route, which
+                 this app doesn't have. -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!--
+              Lets Guidy be offered (NOT set as the automatic/exclusive
+              handler - that requires owning the linked domain, which we
+              don't for google.com) when a person taps a Google Maps link
+              or shares one to another app. android:autoVerify is
+              deliberately omitted: it would just fail verification since
+              we can't host the required assetlinks.json on google.com,
+              and Android skips App Links verification (falling back to
+              a normal, non-exclusive intent-filter) when it does.
+              geo: is Android's own standard scheme for map coordinates
+              and is the one most likely to actually show Guidy in the
+              "Open with" chooser - see lib/services/deep_link_service.dart
+              and lib/services/maps_link_parser.dart for how the incoming
+              link/URI gets parsed once Guidy receives it.
+
+              The Share sheet is the reliable path on Android: someone taps
+              Share on a Google Maps pin or a WhatsApp message and picks
+              Guidy. That is the SEND filter below, handled in
+              MainActivity.kt. (iOS would need a Share Extension target;
+              not done.)
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="geo"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="maps.google.com"/>
+                <data android:scheme="https" android:host="www.google.com" android:pathPrefix="/maps"/>
+                <data android:scheme="https" android:host="maps.app.goo.gl"/>
+            </intent-filter>
+            <!-- "Share to Guidy" from any app: a map link or coordinates
+                 inside the shared text (MainActivity.kt). -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+            <!-- Guidy's own share links (lib/services/share_links.dart).
+                 Verified against public/.well-known/assetlinks.json, so they
+                 open straight in the app. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="guidy-19e46.web.app" android:path="/r"/>
+                <data android:scheme="https" android:host="guidy-19e46.web.app" android:pathPrefix="/l/"/>
+                <data android:scheme="https" android:host="guidyapp.com" android:path="/r"/>
+                <data android:scheme="https" android:host="guidyapp.com" android:pathPrefix="/l/"/>
+            </intent-filter>
+            <!-- guidy://r?... and guidy://l/TOKEN: used by the web page behind
+                 the links when the https link wasn't opened in the app. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="guidy"/>
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+
+        <!--
+          Google Maps SDK for Android requires an API key with "Maps SDK for
+          Android" enabled in Google Cloud Console. Get one at
+          https://console.cloud.google.com/google/maps-apis/credentials
+          Value comes from secrets.properties (MAPS_API_KEY_ANDROID) via
+          android/app/build.gradle.kts, see secrets.properties.example
+          at the Flutter project root.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${mapsApiKey}"/>
+
+        <!--
+          AdMob setup. Value comes from secrets.properties
+          (ADMOB_APP_ID_ANDROID), defaults to Google's public TEST App
+          ID via secrets.properties.example, which is safe to ship during
+          development (only ever serves clearly-labeled test ads). Swap
+          for your real App ID before release.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${admobAppId}"/>
+        <!-- No "native ad validator" popup over native test ads. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
+            android:value="false" />
+
+        <!--
+          Firebase Analytics and Crashlytics stay OFF until consent is
+          resolved; TelemetryConsent switches them on from Dart.
+        -->
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
+        <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+        <meta-data android:name="google_analytics_default_allow_ad_storage" android:value="false" />
+        <meta-data android:name="google_analytics_default_allow_analytics_storage" android:value="false" />
+        <meta-data android:name="google_analytics_default_allow_ad_user_data" android:value="false" />
+        <meta-data android:name="google_analytics_default_allow_ad_personalization_signals" android:value="false" />
+
+        <!-- Scheduled commute notifications (flutter_local_notifications). -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>

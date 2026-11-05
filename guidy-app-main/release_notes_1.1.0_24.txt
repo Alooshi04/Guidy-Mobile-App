@@ -1,0 +1,20 @@
+<en-US>
+Guidy 1.1 (24): simpler for everyone.
+- Simple Mode, rebuilt for seniors: one clear path, big buttons, one step at a time.
+- The banner ad moved to the top, away from your phone's buttons.
+- Alexandria-only Lines view.
+- No more long walking loops for short walks.
+- Commute alerts now ask for permission, and tell you if notifications are off.
+- One "Share my trips" setting, with an info button.
+- Tell us when a walk is wrong.
+</en-US>
+<ar>
+جايدي 1.1 (24): أسهل للكل.
+- الوضع البسيط اتعمل من جديد لكبار السن: طريق واحد واضح، زراير كبيرة، وخطوة خطوة.
+- الإعلان بقى فوق، بعيد عن زراير الموبايل.
+- صفحة خطوط إسكندرية لوحدها.
+- مفيش لفّ طويل في المشي للمسافات القصيرة.
+- تنبيهات المشوار بتطلب الإذن، وبتقولك لو الإشعارات مقفولة.
+- إعداد واحد «شارك مشاويري» وجنبه زرار معلومات.
+- قولّنا لو المشي غلط.
+</ar>

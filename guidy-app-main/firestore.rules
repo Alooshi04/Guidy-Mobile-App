@@ -1,0 +1,173 @@
+rules_version = '2';
+
+// Guidy — Cloud Firestore security rules.
+//
+// Deploy with:   firebase deploy --only firestore:rules
+// (or paste into Firebase console → Firestore Database → Rules → Publish)
+//
+// Firestore denies everything by default, so a collection with no rule here
+// is already locked -- including the two legacy collections noted at the
+// bottom of this file. What this adds is one narrow hole: signed-in riders
+// may CREATE a route report and may never read, edit or delete one.
+//
+// That asymmetry is deliberate. Reports are raw, unverified rider claims
+// about routes, tied to a uid, and they routinely name a place someone was
+// standing. Nobody using the app has any reason to read them back, and a
+// collection that can be listed is a collection that will be scraped.
+// Triage happens in the Firebase console, which bypasses these rules.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /route_reports/{reportId} {
+      allow create: if request.auth != null
+                    // A rider may only file as themselves. Without this,
+                    // any signed-in account could post reports attributed
+                    // to someone else's uid and poison the triage queue.
+                    && request.resource.data.uid == request.auth.uid
+                    // Likewise the email: the account's own or none (guests
+                    // and phone sign-ins have none). Triage trusts it to
+                    // reply to the reporter.
+                    && (!('user_email' in request.resource.data)
+                        || request.resource.data.user_email == null
+                        || request.resource.data.user_email == request.auth.token.get('email', null))
+                    && request.resource.data.schema == 1
+                    && request.resource.data.reason is string
+                    && request.resource.data.comment is string
+                    // Deliberately NOT the UI's 500. The form limits by
+                    // characters; it is not settled whether size() here
+                    // counts characters or UTF-8 bytes, and Arabic is two
+                    // bytes per character -- a 500-character Arabic comment
+                    // could be 1000 by this measure. If the two limits ever
+                    // disagreed the report would queue on the device, look
+                    // sent to the rider, and then be rejected in silence
+                    // when signal returned. So the server bound sits well
+                    // clear of anything the form can produce, and stays
+                    // small enough to be a real guard against someone using
+                    // this collection as free storage.
+                    && request.resource.data.comment.size() <= 4000
+                    // 'missing_route' is a report about a trip the engine
+                    // could NOT plan, so it carries no steps and names no
+                    // route_id -- see submitMissingRoute. It is the only
+                    // channel that produces data about coverage HOLES;
+                    // every other scope can only describe routes we
+                    // 'line', 'metro', 'station' cover reports filed directly from line
+                    // browsers, metro planners, and station directories.
+                    // 'better_route' is "Know a better route?" on Route
+                    // Options: a route the rider says beats the ones
+                    // offered, written or built leg by leg -- see
+                    // submitBetterRoute.
+                    && request.resource.data.scope in ['route', 'step', 'missing_route', 'line', 'metro', 'station', 'better_route']
+                    // Server clock, not the client's. created_at_client is
+                    // stored too, but only as a hint for offline reports.
+                    && request.resource.data.created_at == request.time
+                    && request.resource.data.status == 'new'
+                    // Only the fields RouteReportService actually writes.
+                    // Without this a client could attach anything up to
+                    // Firestore's 1 MB document limit to every report and
+                    // use the collection as free storage.
+                    && request.resource.data.keys().hasOnly([
+                         'schema', 'status', 'created_at', 'created_at_client',
+                         'uid', 'user_email', 'reason', 'reason_label',
+                         'comment', 'scope', 'category', 'app_version',
+                         'platform', 'locale', 'trip', 'steps', 'all_steps',
+                         'failure', 'line', 'selected_stop', 'stops_preview',
+                         'metro_trip', 'station', 'legs', 'shown_options'])
+                    // A better route's legs and the routes it was shown
+                    // next to. The app sends at most 12 and 8; the bound is
+                    // the same backstop as the comment's, against using the
+                    // collection as storage.
+                    && (!('legs' in request.resource.data)
+                        || (request.resource.data.legs is list && request.resource.data.legs.size() <= 20))
+                    && (!('shown_options' in request.resource.data)
+                        || (request.resource.data.shown_options is list
+                            && request.resource.data.shown_options.size() <= 10));
+
+      // Read and triage in the console. Nothing in the app needs these,
+      // and update would let a reporter rewrite history after the fact.
+      allow read, update, delete: if false;
+    }
+
+    // A signed-in rider's own data, synced by the app: profile (display
+    // name) at users/{uid}, and the saved_trips, saved_places and
+    // trip_history subcollections under it. Owner only, and never for guest
+    // (anonymous) accounts, which the app never syncs.
+    //
+    // This block was missing, so the catch-all below denied every one of
+    // these reads and writes. The app swallows those errors, which is why
+    // cloud sync, cross-device restore and the account-deletion cleanup had
+    // all been failing silently.
+    match /users/{uid} {
+      allow read, delete: if isOwner(uid);
+      allow create: if isOwner(uid)
+                    && request.resource.data.keys().hasOnly(['displayName', 'updatedAt'])
+                    && validDisplayName();
+      // diff(), not keys(): an update is checked against the document as it
+      // will be after the write, and an older document may carry fields
+      // from before this app existed.
+      allow update: if isOwner(uid)
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                         .hasOnly(['displayName', 'updatedAt'])
+                    && validDisplayName();
+
+      match /{collection}/{docId} {
+        allow read, write: if isOwner(uid)
+                           && collection in ['saved_trips', 'saved_places', 'trip_history'];
+      }
+
+      // Agreement to the Terms, Privacy Policy and Data Deletion Policy
+      // (LegalConsentService): one record per policy version. A rider may
+      // add their own and never change one, so the records stand as a log
+      // of who agreed to what and when -- the time is the server's. They
+      // may delete them, with the rest of their account. Guests too (unlike
+      // isOwner): they agree like everyone else.
+      match /legal_consents/{version} {
+        allow read, delete: if isSelf(uid);
+        allow create: if isSelf(uid)
+                      && request.resource.data.keys().hasOnly(['version', 'lang', 'app_version', 'accepted_at'])
+                      && request.resource.data.version == version
+                      && request.resource.data.accepted_at == request.time
+                      && request.resource.data.lang in ['en', 'ar']
+                      && request.resource.data.app_version is string
+                      && request.resource.data.app_version.size() <= 40;
+        allow update: if false;
+      }
+    }
+
+    function validDisplayName() {
+      return !('displayName' in request.resource.data)
+          || (request.resource.data.displayName is string
+              && request.resource.data.displayName.size() <= 200);
+    }
+
+    // The signed-in account itself, guests included.
+    function isSelf(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function isOwner(uid) {
+      return request.auth != null
+          && request.auth.uid == uid
+          && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+
+    // LEGACY COLLECTION -- left closed on purpose, not by oversight.
+    //
+    // This database already contains `reports` (incident reports: lat, lon,
+    // incident_type, severity, details, timestamp, user_id). Nothing in the
+    // current app or backend touches it -- it is from an earlier iteration.
+    // (`users` used to be listed here too; it is now the rider-data block
+    // above.)
+    //
+    // It is also ALREADY unreachable: the rules published before this
+    // file were the console's test-mode default, which expired on
+    // 2026-07-29. Leaving it closed changes nothing that currently works.
+    //
+    // Writing rules for it would mean guessing at an access model for
+    // data whose owner and reader are unknown, and a wrong guess in a
+    // security rule is a data leak rather than a bug. If something still
+    // needs them, add an explicit match block here with the real model.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Guidy",
+  "short_name": "Guidy",
+  "description": "Plan trips across Cairo, Giza and Alexandria by metro, bus, minibus and microbus.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0f1722",
+  "theme_color": "#0f1722",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

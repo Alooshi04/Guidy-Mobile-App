@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guidy: Cairo, Giza and Alexandria public transport, planned</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fbfaf7" />
+    <!-- Before first paint: a saved choice sets the theme (otherwise the CSS follows the system), so the wrong one never flashes. -->
+    <script>
+      (function () {
+        var d = document.documentElement, t = null;
+        try { t = localStorage.getItem("guidy-theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") t = null;
+        if (t) d.setAttribute("data-theme", t);
+        var dark = t ? t === "dark" : window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#0f1722" : "#fbfaf7");
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/fonts/nunito-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!--seo-->
+    <!--/seo-->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

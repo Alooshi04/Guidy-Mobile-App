@@ -1,0 +1,80 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# API keys / secrets -- see secrets.properties.example for the template.
+# secrets.properties IS committed to the private guidy-app repo (force-added,
+# so the whole team and test Macs build with real keys). It must never reach
+# the PUBLIC guidy-app-ci-mirror: tool/make_ci_snapshot.sh strips it from
+# every mirror snapshot, push_ci_mirror.bat refuses a snapshot containing it,
+# and CI fails if it ever shows up in a public repo. The ignore line stays so
+# local copies in other checkouts aren't picked up by accident.
+secrets.properties
+# Generated from secrets.properties by run_ios.sh / CI.
+/build/dart_defines.json
+
+# Firebase CLI deploy cache -- records which files were last uploaded so
+# `firebase deploy` can skip unchanged ones. Local, machine-specific, and
+# regenerated on every deploy.
+.firebase/
+
+# Built binaries
+*.apk
+*.aab
+
+
+# Android release signing -- never commit (see restore_signing_files.bat).
+android/key.properties
+*.jks
+*.keystore
+
+# Firestore rules checks (firestore_rules_test/)
+firestore_rules_test/node_modules/
+firestore-debug.log
+
+# Scratch files and test logs
+crash.txt
+testResults.xml
+website/*.7z

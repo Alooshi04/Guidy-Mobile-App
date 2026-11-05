@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Guidy</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Guidy</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Guidy uses your location to find nearby stops and calculate routes for you.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Guidy uses your location to find nearby stops and calculate routes for you.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Guidy uses this to show you more relevant ads and measure how well they perform. You can decline without losing access to any app features.</string>
+
+	<!--
+	  App Tracking Transparency (ATT): the description above is what iOS
+	  shows in the system permission dialog — see
+	  lib/services/tracking_service.dart for where it's requested. Apple
+	  requires this key whenever the app uses IDFA-based ad tracking
+	  (google_mobile_ads does by default), regardless of what the person
+	  ends up choosing.
+
+	  Optional next step, not done here: Google also recommends adding a
+	  SKAdNetworkItems array so AdMob can still attribute installs via
+	  SKAdNetwork when a person declines tracking. That's a long,
+	  frequently-updated list of network IDs from Google's own docs
+	  (https://developers.google.com/admob/ios/ios14#skadnetwork) —
+	  copy it from there directly rather than from anywhere else, since
+	  it changes over time and a stale copy just means missed
+	  attribution, not a broken build.
+	-->
+
+	<!--
+	  Google Sign-In setup: register an iOS app for this project in the
+	  Firebase console, download the resulting GoogleService-Info.plist
+	  into ios/Runner/, and copy its REVERSED_CLIENT_ID value both here
+	  and into secrets.properties (GOOGLE_REVERSED_CLIENT_ID_IOS), so the
+	  single file stays accurate as documentation even though Xcode
+	  doesn't read it directly.
+	-->
+	<!-- Links go through app_links + DeepLinkService, not Flutter's router. -->
+	<key>FlutterDeepLinkingEnabled</key>
+	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1006208450463-g64acq43s3po5ol5mu658c8ttp88ik83</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.guidy.guidyApp.links</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>guidy</string>
+			</array>
+		</dict>
+	</array>
+
+	<!--
+	  AdMob setup: this is Google's official public TEST App ID, safe
+	  to ship during development (only ever serves clearly-labeled test
+	  ads). Copy the real value from secrets.properties
+	  (ADMOB_APP_ID_IOS) before release, or App Store review will
+	  reject test ads in production.
+	-->
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<false/>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
+	<key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE</key>
+	<false/>
+	<key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE</key>
+	<false/>
+	<key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA</key>
+	<false/>
+	<key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS</key>
+	<false/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<!-- No "native ad validator" popup over native test ads. -->
+	<key>GADNativeAdValidatorEnabled</key>
+	<false/>
+
+	<!--
+	  Google Maps SDK key, read by AppDelegate.swift. The value comes from
+	  the MAPS_API_KEY_IOS build setting, which ios/Flutter/Secrets.xcconfig
+	  (gitignored) provides; CI writes that file from a repo secret. When it
+	  is unset this expands to an empty string and the map shows no tiles.
+	-->
+	<key>GMSApiKey</key>
+	<string>$(MAPS_API_KEY_IOS)</string>
+
+	<!--
+	  Development builds talk to the routing backend on the dev machine over
+	  plain http://192.168.x.x (see ApiService.defaultCandidates). Dart's own
+	  HttpClient is not subject to App Transport Security, but anything that
+	  goes through NSURLSession (native plugins, web views) is, and since
+	  iOS 17 ATS blocks raw IP addresses by default. This declares the local
+	  intent explicitly; it only covers IP addresses, .local and unqualified
+	  hosts, and public hosts still require HTTPS. The usage description
+	  below is what iOS 14+ actually requires before any LAN connection.
+	-->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<!-- iOS 14+ asks before an app may reach devices on the local network. -->
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Guidy can reach its routing server on your local network when you test it on your own Wi-Fi.</string>
+
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneClassName</key>
+					<string>UIWindowScene</string>
+					<key>UISceneConfigurationName</key>
+					<string>flutter</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>

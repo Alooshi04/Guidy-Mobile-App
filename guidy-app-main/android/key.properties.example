@@ -1,0 +1,22 @@
+# Copy this file to key.properties (same folder, android/key.properties)
+# and fill in the real values for your release keystore. key.properties
+# is gitignored -- never commit it, and never commit the .jks/.keystore
+# file it points at either (also gitignored via android/.gitignore).
+#
+# Without this file present, android/app/build.gradle.kts falls back to
+# signing release builds with the debug keystore -- which builds fine
+# locally but Play Store (and most real distribution) will reject.
+#
+# To generate a new keystore:
+#   keytool -genkeypair -v -keystore guidy-release-key.jks -alias guidy_release \
+#     -keyalg RSA -keysize 2048 -validity 10000
+# (run from android/app/, or adjust storeFile below to wherever you put it)
+#
+# BACK THIS KEYSTORE FILE UP SOMEWHERE SAFE (password manager, offline
+# backup). If you lose it, or its passwords, you can never publish an
+# update to an app that's already live on Play Store under this keystore
+# -- you'd have to ship as a brand new app listing instead.
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=guidy_release
+storeFile=guidy-release-key.jks

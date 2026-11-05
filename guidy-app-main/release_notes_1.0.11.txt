@@ -1,0 +1,19 @@
+<en-US>
+More of Alexandria, at real prices, and a smoother trip screen.
+- 14 more Alexandria microbus lines, including Borg El-Arab, Abu Qir and Abu Talat.
+- New Alexandria filter in the Lines tab.
+- Alexandria buses show APTA's official prices; microbus fares follow distance (for example 5 to 22 EGP).
+- Trip tools now sit in one row, and the step card stays visible above the ad.
+- Walking routes and recommendations now follow real sidewalks and roads around gated compounds and neighborhood perimeters.
+- Fixes: the Location Accuracy prompt no longer repeats, the Metro title overlap, "1 change", and a faster Trips tab.
+</en-US>
+<ar>
+إسكندرية أكتر، وبأسعارها الحقيقية، وشاشة رحلة أسلس.
+- 14 خط ميكروباص جديد في إسكندرية، منهم برج العرب وأبو قير وأبو تلات.
+- فلتر جديد لخطوط إسكندرية في شاشة الخطوط.
+- أتوبيسات إسكندرية بأسعار هيئة النقل العام الرسمية، وأجرة الميكروباص على حسب المسافة (زي 5 لـ 22 ج.م).
+- أدوات الرحلة بقت في صف واحد، وكارت الخطوة بيفضل ظاهر فوق الإعلان.
+- مسارات المشي والترشيحات أصبحت تتبع الشوارع والأرصفة الحقيقية حول الكمبوندات والمناطق السكنية المغلقة.
+- إصلاحات: رسالة دقة الموقع مبقتش تتكرر، وتداخل عنوان المترو، وكلمة "1 تغيير"، وشاشة الرحلات أسرع.
+</ar>
+

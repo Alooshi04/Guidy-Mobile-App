@@ -1,0 +1,27 @@
+{
+  "name": "guidy-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "test": "node --test \"src/**/*.test.js\"",
+    "demo-data": "node scripts/demo_data.mjs",
+    "legal": "python legal/build_legal.py",
+    "test:legal": "python -m unittest discover -s legal"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "vite": "^8.3.0"
+  }
+}

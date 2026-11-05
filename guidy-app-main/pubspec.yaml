@@ -1,0 +1,157 @@
+name: guidy_app
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.2.1+30
+
+environment:
+  sdk: ^3.11.1
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+  google_maps_flutter: ^2.10.0
+  http: ^1.6.0
+  geolocator: ^14.0.2
+  firebase_auth: ^6.7.0
+  firebase_core: ^4.15.0
+  shared_preferences: ^2.5.5
+  url_launcher: ^6.3.1
+  google_sign_in: ^6.2.2
+  # ^10.7.0 resolved to 10.12.0, which extends IconData -- and Flutter
+  # has since marked IconData final, so that package no longer compiles
+  # against current stable. `flutter analyze` still passed (it doesn't
+  # run the CFE over pub-cache sources); `flutter test` and any real
+  # build did not.
+  #
+  # 11.0.0 is the upstream fix: FaIconData no longer implements
+  # IconData. FaIcon and FontAwesomeIcons keep their names, and the
+  # call site here (social_auth_buttons.dart, the Google button)
+  # already uses FaIcon rather than a bare Icon, which is what 11.x now
+  # strictly requires.
+  font_awesome_flutter: ^11.0.0
+  firebase_crashlytics: ^5.4.0
+  firebase_analytics: ^12.6.0
+  firebase_messaging: ^16.0.5
+  # Route reports (RouteReportService). Chosen over an endpoint on the
+  # backend because that service is stateless with a read-only feed volume
+  # -- and because Firestore queues writes offline, which is exactly the
+  # situation a rider is in when they notice a route is wrong underground.
+  cloud_firestore: ^6.9.0
+  # Already present transitively; declared explicitly because
+  # RouteReportService imports it directly, and a direct import resting on
+  # someone else's transitive dependency breaks the day that package drops
+  # it.
+  package_info_plus: ^10.2.1
+  share_plus: ^13.3.0
+  # Patched copy of 2.0.12 for AGP 9 built-in Kotlin; see
+  # packages/in_app_review/GUIDY_PATCH.md.
+  in_app_review:
+    path: packages/in_app_review
+  google_mobile_ads: ^9.1.0
+  app_tracking_transparency: ^2.0.7
+  google_fonts: ^6.2.1
+  app_links: ^6.3.2
+  flutter_device_compass: ^2.2.0
+  flutter_svg: ^2.3.0
+  flutter_local_notifications: ^22.3.2
+  timezone: ^0.11.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+  # The fake native map in test/support/fake_google_maps_platform.dart
+  # implements this interface, so tests can see onMapCreated fire.
+  google_maps_flutter_platform_interface: ^2.17.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  generate: true
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/logo_light.png
+    - assets/images/logo_dark.png
+    # Stacked lockup, used by the launch animation. A portrait screen with a
+    # route line under the mark composes better around the vertical version
+    # than around the 2.9:1 wordmark the other screens use.
+    - assets/images/logo_vertical_light.png
+    - assets/images/logo_vertical_dark.png
+    # Icons exported from the Guidy Figma design (tab bar, transport modes,
+    # quick destinations). Tinted at runtime where a state needs another colour.
+    - assets/icons/
+    # The brand faces (Nunito Sans, Almarai), named the way google_fonts
+    # looks them up, so the app never has to download a font. The first
+    # launch is often on the metro with no signal, and a face that could
+    # not be fetched was reported to Crashlytics as a crash. These are the
+    # weights the app draws: 400-800, and Nunito Sans italic for display
+    # text. Both are SIL OFL 1.1; the licences sit beside the fonts.
+    - assets/google_fonts/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package

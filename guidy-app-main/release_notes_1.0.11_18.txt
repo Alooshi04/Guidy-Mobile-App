@@ -1,0 +1,9 @@
+<en-US>
+Wave a ride down anywhere, and see every line on one card.
+- Board a microbus, minibus or bus wherever it passes, not just at stops, and get off where you ask (not on bridges or highways).
+- Each step lists every line you can take, most frequent first, best ones highlighted.
+- Change vehicles where two routes cross instead of walking between stops.
+- No more 4+ vehicle trips that barely save time.
+- Better Alexandria routes, with fewer waits for full buses.
+- New icon that fits every phone.
+</en-US>

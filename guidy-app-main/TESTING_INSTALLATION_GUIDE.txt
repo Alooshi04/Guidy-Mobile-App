@@ -1,0 +1,105 @@
+================================================================================
+                    GUIDY TRANSIT APP - TESTER INSTALLATION GUIDE
+                              (Android & iOS Instructions)
+================================================================================
+
+Thank you for helping test the Guidy Transit App! 
+Guidy is designed to help commuters navigate Greater Cairo's transit network,
+including Metro, Buses (CTA, Green Bus, Mwasalat Misr), and Microbuses with 
+accurate fares, real routes, and smart walking limits.
+
+--------------------------------------------------------------------------------
+PART 1: ANDROID INSTALLATION INSTRUCTIONS (APK Sideload)
+--------------------------------------------------------------------------------
+
+1. DOWNLOAD THE APK:
+   - Click the MEGA download link provided and download `guidy.apk` (or 
+     `guidy-release.apk`) to your Android device.
+
+2. OPEN THE FILE:
+   - Once the download is complete, tap the download notification, or open 
+     your phone's "Files" or "Downloads" app and tap on `guidy.apk`.
+
+3. ALLOW UNKNOWN APPS / UNKNOWN SOURCES:
+   - If prompted with "For your security, your phone is not allowed to install 
+     unknown apps from this source":
+     a) Tap "Settings" in the popup.
+     b) Toggle ON "Allow from this source" (or "Install unknown apps").
+     c) Tap the Back button to return to the installation screen.
+
+4. GOOGLE PLAY PROTECT PROMPT:
+   - Because this APK is downloaded directly (outside Google Play Store), 
+     Google Play Protect may display a prompt saying:
+     "Blocked by Play Protect" or "Unrecognized App".
+   - Tap "More details" (or the dropdown arrow).
+   - Tap "Install anyway" (تثبيت على أي حال).
+
+5. COMPLETE INSTALLATION:
+   - Tap "Install".
+   - Once installed, tap "Open".
+
+6. APP PERMISSIONS:
+   - Location Permission: When prompted, select "While using the app" 
+     (أثناء استخدام التطبيق). This is required so Guidy can detect your nearest 
+     bus/metro station and calculate live walking directions.
+
+--------------------------------------------------------------------------------
+PART 2: iOS (iPHONE) INSTALLATION INSTRUCTIONS
+--------------------------------------------------------------------------------
+
+NOTE: iOS devices cannot install Android `.apk` files directly. Apple requires 
+iOS apps to be distributed via TestFlight, an Ad-Hoc/Enterprise profile, or 
+sideloading tools.
+
+Below are the options available for iOS testers:
+
+OPTION A: APPLE TESTFLIGHT (Recommended & Easiest)
+--------------------------------------------------
+1. Install the free "TestFlight" app from the Apple App Store on your iPhone.
+2. Open the TestFlight invite link sent by the development team (or accept 
+   the invitation email from TestFlight).
+3. Tap "Accept", then tap "Install".
+4. The app will install directly to your home screen and update automatically.
+
+OPTION B: SIDELOADLY / ALTSTORE (Using an IPA file on Mac/PC)
+-------------------------------------------------------------
+If you were provided with a `guidy.ipa` file:
+1. Download and install Sideloadly (https://sideloadly.io) or AltStore 
+   (https://altstore.io) on your PC or Mac.
+2. Connect your iPhone to your computer using a USB cable.
+3. Open Sideloadly, drag and drop `guidy.ipa` into the tool.
+4. Enter your Apple ID (used by Apple to sign the personal development certificate).
+5. Click "Start". Once finished, Guidy will appear on your iPhone.
+6. On your iPhone, go to:
+   Settings -> General -> VPN & Device Management -> tap your Apple ID -> tap "Trust".
+7. Open Guidy and grant Location Permission when prompted.
+
+OPTION C: DIRECT XCODE INSTALL (For testers with a Mac)
+-------------------------------------------------------
+1. Clone the repository on your Mac.
+2. Open `guidy-app-main/ios/Runner.xcworkspace` in Xcode.
+3. Select your connected iPhone as the build target.
+4. In "Signing & Capabilities", select your Apple ID/Team.
+5. Press the "Play" (Build & Run) button (or Cmd + R).
+
+--------------------------------------------------------------------------------
+PART 3: WHAT TO TEST & FEEDBACK CHECKLIST
+--------------------------------------------------------------------------------
+
+When testing the app, please check:
+[ ] Route Planning: Try planning trips (e.g. from your current location, or 
+    between major hubs like Nasr City, Ramses, Tahrir, Hadayek Al-Ahram).
+[ ] Walking Limits: Confirm that Guidy keeps walks under 1.5 km and does not 
+    suggest excessive walking when transit is available.
+[ ] Lines Screen: Explore the "Lines" tab and verify bus/metro/microbus routes 
+    and station sequences.
+[ ] Ads & Navigation Bar: Check that bottom banners and the "Start Trip" button 
+    stay cleanly above your phone's navigation buttons (Home, Back, Recent Apps).
+[ ] Live Navigation: Tap "Start Trip" to test turn-by-turn guidance.
+
+Found a bug or have feedback?
+Please take a screenshot and report your phone model, Android/iOS version, and a 
+brief description of what happened.
+
+Thank you for making Guidy better for everyone in Cairo!
+================================================================================

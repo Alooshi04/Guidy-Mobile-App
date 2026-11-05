@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.guidy.guidy_app",
+      "sha256_cert_fingerprints": [
+        "02:32:B6:9D:5E:B7:79:C9:4F:72:E8:53:A5:B9:0F:8A:64:8F:01:0A:27:AF:95:72:40:69:E2:08:2E:83:77:FE",
+        "52:D9:B6:EB:EA:99:9D:1A:47:D5:6C:DE:25:3D:4A:32:11:0B:80:8F:79:A4:8F:50:7F:B0:43:BE:01:23:BD:C4",
+        "22:8F:E2:33:B0:B9:D5:00:2E:82:21:6C:6E:9E:38:F3:36:5D:F3:FC:F3:17:2A:6B:15:04:9C:C1:1F:37:63:D1"
+      ]
+    }
+  }
+]

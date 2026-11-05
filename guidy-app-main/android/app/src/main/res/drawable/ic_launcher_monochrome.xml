@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The themed (Android 13+) icon: the foreground mark scaled to 90%, so it
+     fits the 66dp safe zone. Only the alpha is used; the system recolours it. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_launcher_foreground"
+    android:inset="5%" />
