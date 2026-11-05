@@ -1,9 +1,11 @@
 Guidy — Intelligent Public Transit Navigation App 🚐📍
+
 is now on Play Store : https://play.google.com/store/apps/details?id=com.guidy.guidy_app Website : https://www.guidyapp.com
 
 A cross-platform mobile application bridging Cairo's informal public transit data gap by mapping undocumented microbus networks and optimizing multi-modal journeys.
 
 [https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter] [https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart] [https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi] [https://img.shields.io/badge/Maps-OpenStreetMap-7EBC6F?logo=openstreetmap] [https://img.shields.io/badge/License-MIT-yellow.svg]
+
 
 📌 Problem Overview
 In Greater Cairo, informal microbuses account for roughly 63% of daily motorized transit trips, yet they remain virtually undocumented and digitally invisible. Commuters frequently face:
@@ -11,10 +13,14 @@ In Greater Cairo, informal microbuses account for roughly 63% of daily motorized
 Information Scarcity: Reliance on asking passersby or word-of-mouth.
 Unpredictable Travel Cost & Time: High travel impedance and traffic bottlenecks.
 Lack of Multi-Modal Integration: No unified platform integrating formal transit (Metro, public buses) with informal microbuses.
+
 🚀 Key Features
 Multi-Objective Dynamic Routing:
+
 ⚡ Fastest Route: Prioritizes minimum travel time and avoids congestion.
+
 💰 Cheapest Route: Minimizes financial fare cost, tailored for price-sensitive commuters.
+
 ⚖️ Regular Route: Balanced trade-off between time, fare, and transfer penalty.
 Informal Network Mapping: Digitizes informal microbus routes into a graph topology using GPS data.
 Dynamic Congestion ("Jam Factor"): Incorporates real-time congestion scores (0.0–10.0) into the cost function to re-route around bottlenecks.
@@ -23,6 +29,7 @@ Incident Reporting: Real-time crowd reports for accidents, jams, and fare change
 "Record My Trip": Passive GPS logging to discover and map new, unrecorded route corridors.
 Zero-Cost / High-Control Mapping Stack: OpenStreetMap (via flutter_map), TomTom Routing API for walking segments, and Photon Geocoding API.
 Jank-Free 60 FPS UI: Utilizes selective state management (ValueNotifier<LatLng?> / ValueListenableBuilder) to isolate GPS marker updates without rebuilding map tiles or polyline layers.
+
 🏗️ Architecture & Core Logic
 1. Algorithmic Pathfinding
 Engine: Multi-objective, time-weighted Dijkstra search over a directed graph 
