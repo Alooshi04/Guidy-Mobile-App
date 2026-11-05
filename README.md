@@ -77,15 +77,18 @@ W
 ×
 Incident Penalty
 )
+
 2. Tech Stack
 Frontend (Mobile App): Flutter (Dart), flutter_map, OpenStreetMap tiles, TomTom Routing API.
 Backend Core: Python, FastAPI, NetworkX graph modeling.
 Real-Time Data: Firebase Realtime Database & Firebase Cloud Messaging (FCM).
+
 📱 App UI Screenshots
 Home Screen & Search: Location-aware origin/destination geocoding via Photon.
 Route Comparison: Side-by-side breakdown of duration, fare in EGP, and transit modes.
 Live Turn-by-Turn: Street-level routing with live GPS tracking and incident overlay.
 Incident Reporting: Fast one-tap incident submissions (Heavy Traffic, Accidents, Road Closures).
+
 🛠️ Getting Started
 Prerequisites
 Flutter SDK (3.x or higher)
